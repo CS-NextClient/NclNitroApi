@@ -1,0 +1,6 @@
+[submodule "dep/ncl-hl1-source-sdk"]
+	path = dep/ncl-hl1-source-sdk
+	url = https://github.com/CS-NextClient/ncl-hl1-source-sdk
+[submodule "vcpkg"]
+	path = vcpkg
+	url = https://github.com/microsoft/vcpkg
