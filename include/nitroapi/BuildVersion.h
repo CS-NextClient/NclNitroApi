@@ -4,7 +4,6 @@ namespace nitroapi
 {
     struct BuildVersion
     {
-        int BuildNum;
-        const char* BuildString;
+        int build_number{};
     };
 }

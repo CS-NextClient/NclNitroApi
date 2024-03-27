@@ -261,5 +261,7 @@ namespace nitroapi
         { "g_SND_VoiceOverdrive",                   SearchConfig("g_SND_VoiceOverdrive", SearchType::ExportFunc) },
         { "cszrawsentences",                        SearchConfig("cszrawsentences", SearchType::ExportFunc) },
         { "rgpszrawsentence",                       SearchConfig("rgpszrawsentence", SearchType::ExportFunc) },
+        { "scr_con_current",                        SearchConfig("scr_con_current", SearchType::ExportFunc) },
+        { "developer",                              SearchConfig("developer", SearchType::ExportFunc) },
     };
 }

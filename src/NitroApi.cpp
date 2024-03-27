@@ -70,37 +70,33 @@ namespace nitroapi
         windows_data_ = windows_module->GetWindowsData();
         modules_.emplace_back("<exe>", std::move(windows_module));
 
-        std::shared_ptr<AddressProviderBase> engine_provider;
-        std::string engine_path;
-        if (IsWindows())
-        {
-            engine_path = "hw.dll";
-            engine_provider = std::make_shared<EngineAddressProvider8684Windows>();
-        }
-        else
-        {
-            engine_path = "hw.so";
-            engine_provider = std::make_shared<EngineAddressProvider8684Linux>();
-        }
-        auto engine_module = std::make_unique<EngineModule>(hook_storage_, engine_provider, this, command_line, file_system, registry);
-        engine_data_ = engine_module->GetEngineData();
-        modules_.emplace_back(engine_path, std::move(engine_module));
+        RetrieveEngineBuildVersion();
 
-        std::shared_ptr<AddressProviderBase> client_provider;
-        std::string client_path;
-        if (IsWindows())
+        std::shared_ptr<AddressProviderBase> engine_provider = GetEngineAddressProvider();
+        if (engine_provider != nullptr)
         {
-            client_path = "cstrike\\cl_dlls\\client.dll";
-            client_provider = std::make_shared<ClientAddressProvider8684Windows>();
+            std::string engine_path = IsWindows() ? "hw.dll" : "hw.so";
+            auto engine_module = std::make_unique<EngineModule>(hook_storage_, engine_provider, this, command_line, file_system, registry);
+            engine_data_ = engine_module->GetEngineData();
+            modules_.emplace_back(engine_path, std::move(engine_module));
         }
         else
         {
-            client_path = "cstrike/cl_dlls/client.so";
-            client_provider = std::make_shared<ClientAddressProvider8684Linux>();
+            LOG(INFO) << "Can't get engine address provider, engine hooks will not work";
         }
-        auto client_module = std::make_unique<ClientModule>(hook_storage_, client_provider);
-        client_data_ = client_module->GetClientData();
-        modules_.emplace_back(client_path, std::move(client_module));
+
+        std::shared_ptr<AddressProviderBase> client_provider = GetClientAddressProvider();
+        if (client_provider != nullptr)
+        {
+            std::string client_path = IsWindows() ? "cstrike\\cl_dlls\\client.dll" : "cstrike/cl_dlls/client.so";
+            auto client_module = std::make_unique<ClientModule>(hook_storage_, client_provider);
+            client_data_ = client_module->GetClientData();
+            modules_.emplace_back(client_path, std::move(client_module));
+        }
+        else
+        {
+            LOG(INFO) << "Can't get client address provider, client hooks will not work";
+        }
 
         if (IsWindows())
         {
@@ -157,9 +153,6 @@ namespace nitroapi
             return;
         }
 
-        if (module_path == "hw.dll" || module_path == "hw.so")
-            RetrieveBuildVersion();
-
         LOG(INFO) << "Module loading " << module_path << " | Begin";
 
         module_hook_data.module_handle = hModule;
@@ -180,6 +173,12 @@ namespace nitroapi
         module_hook_data.module_handle = nullptr;
 
         LOG(INFO) << "Module unloading " << module_path << " | End";
+    }
+
+    void NitroApi::GetVersion(char* buffer, int size)
+    {
+        if (buffer != nullptr)
+            V_strncpy(buffer, NITROAPI_INTERFACE_VERSION ", " __DATE__ " " __TIME__, size);
     }
 
 #ifdef NITROAPI_USE_PROFILER
@@ -213,15 +212,58 @@ namespace nitroapi
     }
 #endif
 
-    void NitroApi::RetrieveBuildVersion()
+    void NitroApi::RetrieveEngineBuildVersion()
     {
+        std::string engine_path = IsWindows() ? "hw.dll" : "hw.so";
+        nitro_utils::SysModule engine_module = nitro_utils::LoadSysModule(engine_path.c_str());
 
+        SearchConfig sc;
+        if (IsWindows())
+            sc = SearchConfig("55 8B EC 83 EC 08 A1 ? ? ? ? 56 33 F6 85 C0 0F 85 ? ? ? ? 53 33 DB"); // pattern for build_number() in 8684
+        else
+            sc = SearchConfig("build_number", SearchType::ExportFunc);
+
+        MemoryModule memory_module(engine_module);
+        MemScanner mem_scanner(memory_module);
+
+        auto build_number = (int (__cdecl *)())sc.FindAddress(mem_scanner);
+
+        if (build_number != nullptr)
+            build_version_ = BuildVersion{build_number()};
+        else
+            LOG(INFO) << "Can't retrieve engine build version (apparently this version of the engine is not supported by nitro_api)";
+
+        nitro_utils::UnloadSysModule(engine_module);
     }
 
-    void NitroApi::GetVersion(char* buffer, int size)
+    std::shared_ptr<AddressProviderBase> NitroApi::GetEngineAddressProvider()
     {
-        if (buffer != nullptr)
-            V_strncpy(buffer, NITROAPI_INTERFACE_VERSION ", " __DATE__ " " __TIME__, size);
+        if (build_version_.build_number != 8684)
+            return nullptr;
+
+        std::shared_ptr<AddressProviderBase> address_provider;
+
+        if (IsWindows())
+            address_provider = std::make_shared<EngineAddressProvider8684Windows>();
+        else
+            address_provider = std::make_shared<EngineAddressProvider8684Linux>();
+
+        return address_provider;
+    }
+
+    std::shared_ptr<AddressProviderBase> NitroApi::GetClientAddressProvider()
+    {
+        if (build_version_.build_number != 8684)
+            return nullptr;
+
+        std::shared_ptr<AddressProviderBase> address_provider;
+
+        if (IsWindows())
+            address_provider = std::make_shared<ClientAddressProvider8684Windows>();
+        else
+            address_provider = std::make_shared<ClientAddressProvider8684Linux>();
+
+        return address_provider;
     }
 
 #ifdef _WIN32

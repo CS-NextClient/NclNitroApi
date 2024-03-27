@@ -9,7 +9,7 @@ namespace nitroapi
     {
         windows_data_ = std::make_shared<WindowsData>();
 
-#ifdef _WINDOWS
+#ifdef _WIN32
         RegisterFuncStdcall<StaticHookId::LoadLibraryA>(&windows_data_->LoadLibraryAFunc, [](nitro_utils::SysModule hModule){ return (uint32_t)LoadLibraryA; });
         RegisterFuncStdcall<StaticHookId::LoadLibraryW>(&windows_data_->LoadLibraryWFunc, [](nitro_utils::SysModule hModule){ return (uint32_t)LoadLibraryW; });
         RegisterFuncStdcall<StaticHookId::FreeLibrary>(&windows_data_->FreeLibraryFunc, [](nitro_utils::SysModule hModule) { return (uint32_t)FreeLibrary; });

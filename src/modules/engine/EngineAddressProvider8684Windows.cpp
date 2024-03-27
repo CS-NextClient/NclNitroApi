@@ -268,5 +268,7 @@ namespace nitroapi
         { "g_SND_VoiceOverdrive",                   SearchConfig(0x154CF0) },
         { "cszrawsentences",                        SearchConfig(0x6BB248) },
         { "rgpszrawsentence",                       SearchConfig(0xA23400) },
+        { "scr_con_current",                        SearchConfig(0xAB7BF4) },
+        { "developer",                              SearchConfig(0x149E0C) },
     };
 }

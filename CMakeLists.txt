@@ -3,6 +3,7 @@ set(VCPKG_TARGET_TRIPLET "x86-windows-static" CACHE STRING "Vcpkg triplet")
 
 cmake_minimum_required(VERSION 3.21)
 project(nitro_api LANGUAGES CXX)
+set(OUTPUT_NAME "nitro_api2")
 
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(CMAKE_CXX_STANDARD 23)
@@ -91,10 +92,7 @@ add_library(nitro_api SHARED
         src/modules/engine/EngineAddressProvider8684Linux.h
 )
 
-add_library(nitro_api::nitro_api ALIAS nitro_api)
-
 target_include_directories(nitro_api PRIVATE
-        ${SOURCE_SDK_INCLUDE_PATHS}
         ${OPENGL_INCLUDE_DIR}
         dep/easyloggingpp/src
         dep/nitro_utils/include
@@ -107,7 +105,7 @@ if (USE_PROFILER)
 endif()
 
 target_link_libraries(nitro_api PRIVATE
-        ${SOURCE_SDK_LIBS}
+        hl1_source_sdk::hl1_source_sdk
         OpenGL::GL
         magic_enum::magic_enum
         xbyak::xbyak
@@ -146,7 +144,6 @@ else ()
 endif ()
 
 target_compile_definitions(nitro_api PRIVATE
-        ${SOURCE_SDK_DEFINES}
         NITRO_API_EASYLOGGING
         #easyloggingpp options
         ELPP_THREAD_SAFE
@@ -174,34 +171,30 @@ if (USE_PROFILER)
     target_compile_definitions(nitro_api PRIVATE -DNITROAPI_USE_PROFILER)
 endif()
 
-if (NOT PROJECT_IS_TOP_LEVEL)
-    set(NITRO_API_INCLUDE_PATHS
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/dep/nitro_utils/include
-            ${SOURCE_SDK_INCLUDE_PATHS}
-            PARENT_SCOPE)
+set_target_properties(${PROJECT_NAME} PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME ${OUTPUT_NAME}
+        SUFFIX ".dll"
+        PDB_NAME ${OUTPUT_NAME}
+)
 
-    set(NITRO_API_LIBS
-            ${SOURCE_SDK_LIBS}
-            nitro_utils
-            PARENT_SCOPE)
+#-----------------------------------------------------------------
+# Export library
+#-----------------------------------------------------------------
+add_library(nitro_api_export STATIC
+        src/ChainExtensions.cpp
+)
+add_library(nitro_api::nitro_api ALIAS nitro_api_export)
 
-    set(NITRO_API_DEFINES
-            ${SOURCE_SDK_DEFINES}
-            NITRO_API_INCLUDED
-            PARENT_SCOPE)
+target_include_directories(nitro_api_export PUBLIC
+        include
+)
 
-    set(NITRO_API_SOURCES
-            ${CMAKE_CURRENT_SOURCE_DIR}/src/ChainExtensions.cpp
-            PARENT_SCOPE)
+target_link_libraries(nitro_api_export INTERFACE
+        nitro_utils::nitro_utils
+        hl1_source_sdk::hl1_source_sdk
+)
 
-    if (DEFINED ENV{nitro_api_COPY_TO_PATH})
-        add_custom_command(TARGET nitro_api POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:nitro_api> $ENV{nitro_api_COPY_TO_PATH}
-                COMMENT "Copying 'nitro_api' library to '$ENV{nitro_api_COPY_TO_PATH}'")
-    endif()
-else()
-    # custom build targets
-    add_custom_target(BUILD_ALL ALL)
-    add_dependencies(BUILD_ALL nitro_api)
-endif()
+target_compile_definitions(nitro_api_export INTERFACE
+        NITRO_API_INCLUDED
+)

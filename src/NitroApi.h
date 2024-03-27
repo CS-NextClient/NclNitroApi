@@ -27,13 +27,13 @@ namespace nitroapi
 
         bool is_initialized_ = false;
 
-        std::shared_ptr<HookStorage> hook_storage_ = nullptr;
-        std::vector<std::tuple<std::string, ModuleHookData>> modules_;
-        std::shared_ptr<ClientData> client_data_;
-        std::shared_ptr<EngineData> engine_data_;
-        std::shared_ptr<WindowsData> windows_data_;
-        std::shared_ptr<SDL2Data> sdl2_data_;
-        BuildVersion build_version_;
+        std::shared_ptr<HookStorage> hook_storage_{};
+        std::vector<std::tuple<std::string, ModuleHookData>> modules_{};
+        std::shared_ptr<ClientData> client_data_{};
+        std::shared_ptr<EngineData> engine_data_{};
+        std::shared_ptr<WindowsData> windows_data_{};
+        std::shared_ptr<SDL2Data> sdl2_data_{};
+        BuildVersion build_version_{};
 
     public:
         ~NitroApi() override;
@@ -59,6 +59,8 @@ namespace nitroapi
         static void InvokeLibraryUnloading(const std::string& module_path, ModuleHookData& module_hook_data);
 
         void SetupProfiler();
-        void RetrieveBuildVersion();
+        void RetrieveEngineBuildVersion();
+        std::shared_ptr<AddressProviderBase> GetEngineAddressProvider();
+        std::shared_ptr<AddressProviderBase> GetClientAddressProvider();
     };
 }

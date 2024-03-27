@@ -22,11 +22,14 @@ else()
 endif()
 
 add_library(nitro_utils STATIC ${NITRO_UTILS_SOURCES})
+add_library(nitro_utils::nitro_utils ALIAS nitro_utils)
 
 target_include_directories(nitro_utils PRIVATE
         dep/proc_maps_parser/include
+        src
+        PUBLIC
         include
-        src)
+)
 
 if (MSVC AND CMAKE_BUILD_TYPE MATCHES Release)
     target_compile_options(nitro_utils PRIVATE /Zi /O2)

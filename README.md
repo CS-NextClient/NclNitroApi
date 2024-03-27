@@ -24,3 +24,8 @@ eng->Cvar_Set("cl_minmodels", "0");
 // 4. Call of the function through the whole chain of handlers
 eng->Cvar_Set.InvokeChained("cl_minmodels", "0");
 ```
+
+
+Currently NitroApi only supports explicit linking. To include NitroApi in your project, add nitro_api::nitro_api to the
+target_link_libraries.
+This will add the necessary includes, defines and libraries to your target (also hlsdk will be added implicitly) 

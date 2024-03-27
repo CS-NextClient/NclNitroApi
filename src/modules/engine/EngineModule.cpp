@@ -87,6 +87,8 @@ namespace nitroapi
         RegisterVar(&engine_data_->g_SND_VoiceOverdrive, "g_SND_VoiceOverdrive");
         RegisterVar(&engine_data_->cszrawsentences, "cszrawsentences");
         RegisterVar(&engine_data_->rgpszrawsentence, "rgpszrawsentence");
+        RegisterVar(&engine_data_->scr_con_current, "scr_con_current");
+        RegisterVar(&engine_data_->developer, "developer");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);

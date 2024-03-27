@@ -139,8 +139,8 @@ namespace nitroapi
         NitroFunction<qboolean, customization_t*, resource_t*, int, int, customization_t**, int*> COM_CreateCustomization;
         // void SetCareerAudioState(int paused)
         NitroFunctionVoid<int>                          SetCareerAudioState;
-        // void Cmd_TokenizeString(char *text)
-        NitroFunctionVoid<char*>                        Cmd_TokenizeString;
+        // void Cmd_TokenizeString(const char *text)
+        NitroFunctionVoid<const char*>                  Cmd_TokenizeString;
         // void Draw_DecalSetName(int decal, const char* name)
         NitroFunctionVoid<int, const char*>             Draw_DecalSetName;
 
@@ -541,5 +541,8 @@ namespace nitroapi
         NitroFunctionVoid<int>                          VoiceSE_NotifyFreeChannel;
         // sentenceEntry_s* SequenceGetSentenceByIndex(unsigned int index)
         NitroFunction<sentenceEntry_s*, unsigned int>   SequenceGetSentenceByIndex;
+
+        float* scr_con_current                          = nullptr;
+        cvar_t* developer                               = nullptr;
     };
 }
