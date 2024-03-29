@@ -124,7 +124,11 @@ if (USE_PROFILER)
 endif()
 
 if (MSVC)
-    target_compile_options(nitro_api PRIVATE /bigobj /WX)
+    target_compile_options(nitro_api PRIVATE
+            /bigobj # increases the max number of sections in obj files. Due to template methods, obj module files (EngineModule, ClientModule) get huge sizes
+            /WX     # treat all warnings as error
+            /EHsc   # NEVER catch SEH exceptions; c functions cannot throw exceptions
+    )
 
     if (CMAKE_BUILD_TYPE MATCHES Release)
         target_compile_options(nitro_api PRIVATE /Zi /O2)
