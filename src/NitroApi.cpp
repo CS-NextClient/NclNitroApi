@@ -215,25 +215,19 @@ namespace nitroapi
     void NitroApi::RetrieveEngineBuildVersion()
     {
         std::string engine_path = IsWindows() ? "hw.dll" : "hw.so";
-        nitro_utils::SysModule engine_module = nitro_utils::LoadSysModule(engine_path.c_str());
 
-        SearchConfig sc;
-        if (IsWindows())
-            sc = SearchConfig("55 8B EC 83 EC 08 A1 ? ? ? ? 56 33 F6 85 C0 0F 85 ? ? ? ? 53 33 DB"); // pattern for build_number() in 8684
+        std::ifstream engine_file(engine_path, std::ifstream::ate | std::ifstream::binary);
+        if (!engine_file.is_open())
+        {
+            LOG(INFO) << "Can't open " << engine_path << " to retrieve engine build version";
+            return;
+        }
+
+        size_t engine_size = engine_file.tellg();
+        if (engine_size == 1641376)
+            build_version_ = BuildVersion{8684};
         else
-            sc = SearchConfig("build_number", SearchType::ExportFunc);
-
-        MemoryModule memory_module(engine_module);
-        MemScanner mem_scanner(memory_module);
-
-        auto build_number = (int (__cdecl *)())sc.FindAddress(mem_scanner);
-
-        if (build_number != nullptr)
-            build_version_ = BuildVersion{build_number()};
-        else
-            LOG(INFO) << "Can't retrieve engine build version (apparently this version of the engine is not supported by nitro_api)";
-
-        nitro_utils::UnloadSysModule(engine_module);
+            LOG(INFO) << "Unsupported engine version";
     }
 
     std::shared_ptr<AddressProviderBase> NitroApi::GetEngineAddressProvider()
