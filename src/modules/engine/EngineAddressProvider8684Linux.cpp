@@ -188,6 +188,10 @@ namespace nitroapi
         { StaticHookId::S_Update,                   SearchConfig("S_Update", SearchType::ExportFunc) },
         { StaticHookId::VoiceSE_NotifyFreeChannel,  SearchConfig("VoiceSE_NotifyFreeChannel", SearchType::ExportFunc) },
         { StaticHookId::SequenceGetSentenceByIndex, SearchConfig("SequenceGetSentenceByIndex", SearchType::ExportFunc) },
+        { StaticHookId::CL_ConnectClient,           SearchConfig("CL_ConnectClient", SearchType::ExportFunc) },
+        { StaticHookId::CL_GetFragmentSize,         SearchConfig("CL_GetFragmentSize", SearchType::ExportFunc) },
+        { StaticHookId::NET_ClearLagData,           SearchConfig("NET_ClearLagData", SearchType::ExportFunc) },
+        { StaticHookId::SZ_GetSpace,                SearchConfig("SZ_GetSpace", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_
@@ -263,5 +267,8 @@ namespace nitroapi
         { "rgpszrawsentence",                       SearchConfig("rgpszrawsentence", SearchType::ExportFunc) },
         { "scr_con_current",                        SearchConfig("scr_con_current", SearchType::ExportFunc) },
         { "developer",                              SearchConfig("developer", SearchType::ExportFunc) },
+        { "cmd_argc",                               SearchConfig("cmd_argc", SearchType::ExportFunc) },
+        { "cmd_argv",                               SearchConfig("cmd_argv", SearchType::ExportFunc) },
+        { "cvar_vars",                              SearchConfig("cvar_vars", SearchType::ExportFunc) },
     };
 }

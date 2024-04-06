@@ -89,6 +89,9 @@ namespace nitroapi
         RegisterVar(&engine_data_->rgpszrawsentence, "rgpszrawsentence");
         RegisterVar(&engine_data_->scr_con_current, "scr_con_current");
         RegisterVar(&engine_data_->developer, "developer");
+        RegisterVar(&engine_data_->cmd_argc, "cmd_argc");
+        RegisterVar(&engine_data_->cmd_argv, "cmd_argv");
+        RegisterVar(&engine_data_->cvar_vars, "cvar_vars");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);
@@ -278,6 +281,10 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::S_Update>(&engine_data_->S_Update);
         RegisterFuncCdecl<StaticHookId::VoiceSE_NotifyFreeChannel>(&engine_data_->VoiceSE_NotifyFreeChannel);
         RegisterFuncCdecl<StaticHookId::SequenceGetSentenceByIndex>(&engine_data_->SequenceGetSentenceByIndex);
+        RegisterFuncCdecl<StaticHookId::CL_ConnectClient>(&engine_data_->CL_ConnectClient);
+        RegisterFuncCdecl<StaticHookId::CL_GetFragmentSize>(&engine_data_->CL_GetFragmentSize);
+        RegisterFuncCdecl<StaticHookId::NET_ClearLagData>(&engine_data_->NET_ClearLagData);
+        RegisterFuncCdecl<StaticHookId::SZ_GetSpace>(&engine_data_->SZ_GetSpace);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});

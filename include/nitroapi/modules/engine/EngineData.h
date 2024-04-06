@@ -515,7 +515,7 @@ namespace nitroapi
         float* scr_fov_value                            = nullptr;
         float* g_SND_VoiceOverdrive                     = nullptr;
         int* cszrawsentences                            = nullptr;
-        char*(*rgpszrawsentence)[CVOXFILESENTENCEMAX]   = nullptr;
+        char* (*rgpszrawsentence)[CVOXFILESENTENCEMAX]  = nullptr;
 
         // void MSG_WriteShort(sizebuf_t* sb, uint16_t c)
         NitroFunctionVoid<sizebuf_t*, uint16_t>         MSG_WriteShort;
@@ -544,5 +544,17 @@ namespace nitroapi
 
         float* scr_con_current                          = nullptr;
         cvar_t* developer                               = nullptr;
+        int* cmd_argc                                   = nullptr;
+        char* (*cmd_argv)[80]                           = nullptr;
+        cvar_t** cvar_vars                              = nullptr;
+
+        // void CL_ConnectClient()
+        NitroFunctionVoid<>                             CL_ConnectClient;
+        // int CL_GetFragmentSize(void* state)
+        NitroFunction<int, void*>                       CL_GetFragmentSize;
+        // void NET_ClearLagData(qboolean bClient, qboolean bServer)
+        NitroFunctionVoid<qboolean, qboolean>           NET_ClearLagData;
+        // void* SZ_GetSpace(sizebuf_t* buf, int length)
+        NitroFunction<void*, sizebuf_t*, int>           SZ_GetSpace;
     };
 }

@@ -195,6 +195,10 @@ namespace nitroapi
         { StaticHookId::S_Update,                   SearchConfig(0x8CA20) },
         { StaticHookId::VoiceSE_NotifyFreeChannel,  SearchConfig(0xC53F0) },
         { StaticHookId::SequenceGetSentenceByIndex, SearchConfig(0x8A900) },
+        { StaticHookId::CL_ConnectClient,           SearchConfig(0x15D70) },
+        { StaticHookId::CL_GetFragmentSize,         SearchConfig(0x15CF0) },
+        { StaticHookId::NET_ClearLagData,           SearchConfig(0x694F0) },
+        { StaticHookId::SZ_GetSpace,                SearchConfig(0x2AC90) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
@@ -270,5 +274,8 @@ namespace nitroapi
         { "rgpszrawsentence",                       SearchConfig(0xA23400) },
         { "scr_con_current",                        SearchConfig(0xAB7BF4) },
         { "developer",                              SearchConfig(0x149E0C) },
+        { "cmd_argc",                               SearchConfig(0x2E3B10) },
+        { "cmd_argv",                               SearchConfig(0x2E3B18) },
+        { "cvar_vars",                              SearchConfig(0x2F570C) },
     };
 }

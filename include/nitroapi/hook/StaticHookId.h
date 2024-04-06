@@ -219,6 +219,10 @@ namespace nitroapi
         S_Update,
         VoiceSE_NotifyFreeChannel,
         SequenceGetSentenceByIndex,
+        CL_ConnectClient,
+        CL_GetFragmentSize,
+        NET_ClearLagData,
+        SZ_GetSpace,
 
         // client.dll
         UserMsg_MOTD = 1000,
