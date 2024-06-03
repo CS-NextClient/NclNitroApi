@@ -15,7 +15,7 @@ namespace nitroapi
     public:
         explicit NitroApiHelper(NitroApiInterface* nitro_api) : nitro_api_(nitro_api) { }
 
-        ~NitroApiHelper() {
+        virtual ~NitroApiHelper() {
             for (auto& unsubscriber : unsubscribers_)
                 unsubscriber->Unsubscribe();
         }
