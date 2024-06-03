@@ -223,6 +223,8 @@ namespace nitroapi
         CL_GetFragmentSize,
         NET_ClearLagData,
         SZ_GetSpace,
+        Host_Shutdown,
+        Host_Quit_f,
 
         // client.dll
         UserMsg_MOTD = 1000,

@@ -556,5 +556,9 @@ namespace nitroapi
         NitroFunctionVoid<qboolean, qboolean>           NET_ClearLagData;
         // void* SZ_GetSpace(sizebuf_t* buf, int length)
         NitroFunction<void*, sizebuf_t*, int>           SZ_GetSpace;
+        // void Host_Shutdown()
+        NitroFunctionVoid<>                             Host_Shutdown;
+        // void Host_Quit_f()
+        NitroFunctionVoid<>                             Host_Quit_f;
     };
 }

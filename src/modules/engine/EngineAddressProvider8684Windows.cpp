@@ -199,6 +199,8 @@ namespace nitroapi
         { StaticHookId::CL_GetFragmentSize,         SearchConfig(0x15CF0) },
         { StaticHookId::NET_ClearLagData,           SearchConfig(0x694F0) },
         { StaticHookId::SZ_GetSpace,                SearchConfig(0x2AC90) },
+        { StaticHookId::Host_Shutdown,              SearchConfig(0x58040) },
+        { StaticHookId::Host_Quit_f,                SearchConfig(0x587E0) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_

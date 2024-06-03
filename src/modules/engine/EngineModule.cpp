@@ -285,6 +285,8 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::CL_GetFragmentSize>(&engine_data_->CL_GetFragmentSize);
         RegisterFuncCdecl<StaticHookId::NET_ClearLagData>(&engine_data_->NET_ClearLagData);
         RegisterFuncCdecl<StaticHookId::SZ_GetSpace>(&engine_data_->SZ_GetSpace);
+        RegisterFuncCdecl<StaticHookId::Host_Shutdown>(&engine_data_->Host_Shutdown);
+        RegisterFuncCdecl<StaticHookId::Host_Quit_f>(&engine_data_->Host_Quit_f);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});
