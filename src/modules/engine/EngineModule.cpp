@@ -92,6 +92,7 @@ namespace nitroapi
         RegisterVar(&engine_data_->cmd_argc, "cmd_argc");
         RegisterVar(&engine_data_->cmd_argv, "cmd_argv");
         RegisterVar(&engine_data_->cvar_vars, "cvar_vars");
+        RegisterVar(&engine_data_->key_dest, "key_dest");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);
@@ -150,6 +151,9 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::Host_FilterTime>(&engine_data_->Host_FilterTime);
         RegisterFuncCdecl<StaticHookId::Host_Map_f>(&engine_data_->Host_Map_f);
         RegisterFuncCdecl<StaticHookId::Host_Map>(&engine_data_->Host_Map);
+        RegisterFuncCdecl<StaticHookId::Con_MessageMode_f>(&engine_data_->Con_MessageMode_f);
+        RegisterFuncCdecl<StaticHookId::Con_MessageMode2_f>(&engine_data_->Con_MessageMode2_f);
+        RegisterFuncCdecl<StaticHookId::Key_Message>(&engine_data_->Key_Message);
         RegisterFuncCdecl<StaticHookId::Host_InitializeGameDLL>(&engine_data_->Host_InitializeGameDLL);
         RegisterFuncCdecl<StaticHookId::ForceReloadProfile>(&engine_data_->ForceReloadProfile);
         RegisterFuncCdecl<StaticHookId::VGuiWrap2_ConPrintf>(&engine_data_->VGuiWrap2_ConPrintf);

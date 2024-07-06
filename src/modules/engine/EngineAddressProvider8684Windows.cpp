@@ -86,6 +86,9 @@ namespace nitroapi
         { StaticHookId::Host_FilterTime,            SearchConfig(0x56F80) },
         { StaticHookId::Host_Map_f,                 SearchConfig(0x597E0) },
         { StaticHookId::Host_Map,                   SearchConfig(0x59640) },
+        { StaticHookId::Con_MessageMode_f,          SearchConfig(0x2c700) },
+        { StaticHookId::Con_MessageMode2_f,         SearchConfig(0x2c760) },
+        { StaticHookId::Key_Message,                SearchConfig(0x60e60) },
         { StaticHookId::Host_InitializeGameDLL,     SearchConfig(0x581C0) },
         { StaticHookId::ForceReloadProfile,         SearchConfig(0xAA9B0) },
         { StaticHookId::VGuiWrap2_ConPrintf,             SearchConfig(0x74F0) },
@@ -279,5 +282,6 @@ namespace nitroapi
         { "cmd_argc",                               SearchConfig(0x2E3B10) },
         { "cmd_argv",                               SearchConfig(0x2E3B18) },
         { "cvar_vars",                              SearchConfig(0x2F570C) },
+        { "key_dest",                               SearchConfig(0x64429c) },
     };
 }

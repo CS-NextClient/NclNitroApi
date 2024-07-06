@@ -236,6 +236,12 @@ namespace nitroapi
         NitroFunctionVoid<>                             Host_Map_f;
         // void Host_Map(qboolean bIsDemo, const char* mapstring, const char* mapName, qboolean loadGame)
         NitroFunctionVoid<qboolean, const char*, const char*, qboolean> Host_Map;
+        // void Con_MessageMode_f()
+        NitroFunctionVoid<>                             Con_MessageMode_f;
+        // void Con_MessageMode2_f()
+        NitroFunctionVoid<>                             Con_MessageMode2_f;
+        // void Key_Message(int key)
+        NitroFunctionVoid<int>                          Key_Message;
         // void Host_InitializeGameDLL()
         NitroFunctionVoid<>                             Host_InitializeGameDLL;
         // void ForceReloadProfile()
@@ -547,6 +553,7 @@ namespace nitroapi
         int* cmd_argc                                   = nullptr;
         char* (*cmd_argv)[80]                           = nullptr;
         cvar_t** cvar_vars                              = nullptr;
+        keydest_t* key_dest                             = nullptr;
 
         // void CL_ConnectClient()
         NitroFunctionVoid<>                             CL_ConnectClient;

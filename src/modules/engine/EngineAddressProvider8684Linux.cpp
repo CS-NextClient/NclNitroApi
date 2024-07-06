@@ -85,6 +85,9 @@ namespace nitroapi
         { StaticHookId::Host_FilterTime,            SearchConfig("Host_FilterTime", SearchType::ExportFunc) },
         { StaticHookId::Host_Map_f,                 SearchConfig("Host_Map_f", SearchType::ExportFunc) },
         { StaticHookId::Host_Map,                   SearchConfig("Host_Map", SearchType::ExportFunc) },
+        { StaticHookId::Con_MessageMode_f,          SearchConfig("Con_MessageMode_f", SearchType::ExportFunc) },
+        { StaticHookId::Con_MessageMode2_f,         SearchConfig("Con_MessageMode2_f", SearchType::ExportFunc) },
+        { StaticHookId::Key_Message,                SearchConfig("Key_Message", SearchType::ExportFunc) },
         { StaticHookId::Host_InitializeGameDLL,     SearchConfig("Host_InitializeGameDLL", SearchType::ExportFunc) },
         { StaticHookId::ForceReloadProfile,         SearchConfig("ForceReloadProfile", SearchType::ExportFunc) },
         { StaticHookId::VGuiWrap2_ConPrintf,             SearchConfig("VGuiWrap2_ConPrintf", SearchType::ExportFunc) },
@@ -272,5 +275,6 @@ namespace nitroapi
         { "cmd_argc",                               SearchConfig("cmd_argc", SearchType::ExportFunc) },
         { "cmd_argv",                               SearchConfig("cmd_argv", SearchType::ExportFunc) },
         { "cvar_vars",                              SearchConfig("cvar_vars", SearchType::ExportFunc) },
+        { "key_dest",                               SearchConfig("key_dest", SearchType::ExportFunc) },
     };
 }
