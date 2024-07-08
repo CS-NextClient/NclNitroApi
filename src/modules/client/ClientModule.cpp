@@ -20,6 +20,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::UserMsg_CurWeapon>(&client_data_->UserMsg_CurWeapon);
         RegisterFuncCdecl<StaticHookId::UserMsg_InitHUD>(&client_data_->UserMsg_InitHUD);
         RegisterFuncCdecl<StaticHookId::UserMsg_DeathMsg>(&client_data_->UserMsg_DeathMsg);
+        RegisterFuncCdecl<StaticHookId::UserMsg_TextMsg>(&client_data_->UserMsg_TextMsg);
 
         RegisterFuncCdecl<StaticHookId::CLDLL_Initialize>(&client_data_->CLDLL_Initialize);
         RegisterFuncCdecl<StaticHookId::HUD_Init>(&client_data_->HUD_Init);

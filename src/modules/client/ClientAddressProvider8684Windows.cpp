@@ -9,6 +9,7 @@ namespace nitroapi
         { StaticHookId::UserMsg_SetFOV,             SearchConfig(0x4E150) },
         { StaticHookId::UserMsg_CurWeapon,          SearchConfig(0x40260) },
         { StaticHookId::UserMsg_InitHUD,            SearchConfig(0x4E0F0) },
+        { StaticHookId::UserMsg_TextMsg,            SearchConfig(0x69930) },
 
         { StaticHookId::CLDLL_Initialize,           SearchConfig("Initialize", SearchType::ExportFunc) },
         { StaticHookId::HUD_Init,                   SearchConfig("HUD_Init", SearchType::ExportFunc) },

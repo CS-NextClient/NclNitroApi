@@ -284,6 +284,7 @@ namespace nitroapi
         UserMsg_CurWeapon,
         UserMsg_InitHUD,
         UserMsg_DeathMsg,
+        UserMsg_TextMsg,
 
         // SDL2.dll
         SDL_DestroyWindow = 1500,

@@ -9,6 +9,7 @@ namespace nitroapi
         { StaticHookId::UserMsg_SetFOV,             SearchConfig("_Z16__MsgFunc_SetFOVPKciPv", SearchType::ExportFunc) },
         { StaticHookId::UserMsg_CurWeapon,          SearchConfig("_Z19__MsgFunc_CurWeaponPKciPv", SearchType::ExportFunc) },
         { StaticHookId::UserMsg_InitHUD,            SearchConfig("_Z17__MsgFunc_InitHUDPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_TextMsg,            SearchConfig("_Z17__MsgFunc_TextMsgPKciPv", SearchType::ExportFunc) },
 
         { StaticHookId::CLDLL_Initialize,           SearchConfig("Initialize", SearchType::ExportFunc) },
         { StaticHookId::HUD_Init,                   SearchConfig("HUD_Init", SearchType::ExportFunc) },

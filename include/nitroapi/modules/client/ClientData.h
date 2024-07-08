@@ -120,6 +120,8 @@ namespace nitroapi
         NitroFunction<int, const char*, int, void*>                 UserMsg_CurWeapon;
         // int UserMsg_InitHUD(const char* name, int size, void* data)
         NitroFunction<int, const char*, int, void*>                 UserMsg_InitHUD;
+        // int UserMsg_TextMsg(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                 UserMsg_TextMsg;
 
         // int CHudHealth::Draw(CHudHealth *const this, float flTime)
         NitroFunction<int, CHudHealth* const, float>                CHudHealth__Draw;
