@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <ranges>
 #include <cctype>
 #include <locale>
 #include <vector>
@@ -11,9 +12,24 @@ namespace nitro_utils
 {
     enum class CompareOptions
     {
-        None        = 0,
-        IgnoreCase  = 1
+        None = 0,
+        RegisterIndependent = 1
     };
+
+    static int _fast_to_lower(char c)
+    {
+        int i = (unsigned char)c;
+        if (i < 0x80)
+        {
+            // Brutally fast branchless ASCII tolower():
+            i += (((('A' - 1) - i) & (i - ('Z' + 1))) >> 26) & 0x20;
+        }
+        else
+        {
+            i += isupper(i) ? 0x20 : 0;
+        }
+        return i;
+    }
 
     //
     //  REGISTER FUNCTIONS
@@ -21,67 +37,93 @@ namespace nitro_utils
 
     inline void to_lower(std::string& s)
     {
-        std::for_each(s.begin(), s.end(), [](char &c) {
-            c = ::tolower(c);
+        std::ranges::for_each(s, [](char& c)
+        {
+            c = _fast_to_lower(c);
         });
+    }
+
+    [[nodiscard]] inline std::string to_lower_copy(const std::string& s)
+    {
+        std::string result = s;
+
+        std::ranges::for_each(result, [](char& c)
+        {
+            c = _fast_to_lower(c);
+        });
+
+        return result;
     }
 
     inline void to_upper(std::string& s)
     {
-        std::for_each(s.begin(), s.end(), [](char &c) {
+        std::ranges::for_each(s, [](char& c)
+        {
             c = ::toupper(c);
         });
+    }
+
+    [[nodiscard]] inline std::string to_upper_copy(const std::string& s)
+    {
+        std::string result = s;
+
+        std::ranges::for_each(result, [](char& c)
+        {
+            c = ::toupper(c);
+        });
+
+        return result;
     }
 
     //
     //  TRIM FUNCTIONS
     //
 
-    inline void ltrim(std::string &s, const std::function<bool(unsigned char )>& condition)
+    constexpr void ltrim(std::string& s, const std::function<bool(unsigned char)>& condition)
     {
         s.erase(s.begin(), std::find_if(s.begin(), s.end(), condition));
     }
 
-    inline void ltrim(std::string &s)
+    constexpr void ltrim(std::string& s)
     {
         ltrim(s, [](unsigned char ch) { return !std::isspace(ch); });
     }
 
-    inline void ltrim(std::string &s, char trim_char)
+    constexpr void ltrim(std::string& s, char trim_char)
     {
         ltrim(s, [trim_char](unsigned char ch) { return !trim_char; });
     }
 
 
-    inline void rtrim(std::string &s, const std::function<bool(unsigned char )>& condition)
+    constexpr void rtrim(std::string& s, const std::function<bool(unsigned char)>& condition)
     {
         s.erase(std::find_if(s.rbegin(), s.rend(), condition).base(), s.end());
     }
 
-    inline void rtrim(std::string &s)
+    constexpr void rtrim(std::string& s)
     {
         rtrim(s, [](unsigned char ch) { return !std::isspace(ch); });
     }
 
-    inline void rtrim(std::string &s, char trim_char)
+    constexpr void rtrim(std::string& s, char trim_char)
     {
         rtrim(s, [trim_char](unsigned char ch) { return !trim_char; });
     }
 
 
-    inline void trim(std::string &s)
+    constexpr void trim(std::string& s)
     {
         ltrim(s);
         rtrim(s);
     }
 
-    inline void trim(std::string &s, char trim_char)
+    constexpr void trim(std::string& s, char trim_char)
     {
         ltrim(s, trim_char);
         rtrim(s, trim_char);
     }
 
-    inline void trim(std::string &s, const std::function<bool(unsigned char )>& condition)
+    constexpr void trim(std::string& s, const std::function<bool(unsigned char)>& condition)
     {
         ltrim(s, condition);
         rtrim(s, condition);
@@ -91,39 +133,51 @@ namespace nitro_utils
     //  REPLACE FUNCTIONS
     //
 
-    inline void replace_nth(std::string &s, const std::string& search, int nth, const std::string& format)
-    {
-        size_t start_pos = 0;
-        int i = 0;
-        while ((start_pos = s.find(search, start_pos)) != std::string::npos)
-        {
-            if (i == nth)
-            {
-                s.replace(start_pos, search.length(), format);
-                break;
-            }
-
-            start_pos += search.size();
-            i++;
-        }
-    }
-
     // from https://en.cppreference.com/w/cpp/string/basic_string/replace
-    inline std::size_t replace_all(std::string& inout, std::string_view what, std::string_view with)
+    constexpr std::size_t replace_all(std::string& inout, const std::string& what, const std::string& with)
     {
         std::size_t count{};
         for (std::string::size_type pos{};
              std::string::npos != (pos = inout.find(what.data(), pos, what.length()));
-             pos += with.length(), ++count) {
+             pos += with.length(), ++count)
+        {
             inout.replace(pos, what.length(), with.data(), with.length());
         }
         return count;
     }
 
-    [[nodiscard]] inline std::string replace_all_copy(std::string_view in, std::string_view what, std::string_view with)
+    [[nodiscard]] constexpr std::string replace_all_copy(const std::string& str, const std::string& what, const std::string& with)
     {
-        std::string result(in);
+        std::string result(str);
+
         replace_all(result, what, with);
+
+        return result;
+    }
+
+    constexpr void replace_nth(std::string& inout, const std::string& what, int nth, const std::string& with)
+    {
+        size_t start_pos = 0;
+        int i = 0;
+        while ((start_pos = inout.find(what, start_pos)) != std::string::npos)
+        {
+            if (i == nth)
+            {
+                inout.replace(start_pos, what.length(), with);
+                break;
+            }
+
+            start_pos += what.size();
+            i++;
+        }
+    }
+
+    [[nodiscard]] constexpr std::string replace_nth_copy(const std::string& str, const std::string& what, int nth, const std::string& with)
+    {
+        std::string result(str);
+
+        replace_nth(result, what, nth, with);
+
         return result;
     }
 
@@ -146,25 +200,40 @@ namespace nitro_utils
     // VARIOUS FUNCTIONS
     //
 
-    [[nodiscard]] inline bool contains(const std::string& s, const std::string& sub)
+    [[nodiscard]] constexpr bool contains(const std::string& str, const std::string& sub, CompareOptions compare_options = CompareOptions::None)
     {
-        return s.find(sub) != std::string::npos;
+        if (compare_options == CompareOptions::RegisterIndependent)
+        {
+            auto found = std::ranges::search(str, sub, [](char a, char b) { return _fast_to_lower(a) == _fast_to_lower(b); });
+            return !found.empty();
+        }
+
+        return str.find(sub) != std::string::npos;
     }
 
-    inline bool equals(std::string_view a, std::string_view b, CompareOptions compareOptions = CompareOptions::None)
+    [[nodiscard]] constexpr bool equals(const std::string& a, const std::string& b, CompareOptions compare_options = CompareOptions::None)
     {
-        if (compareOptions == CompareOptions::IgnoreCase)
-            return std::equal(a.begin(), a.end(),
-                              b.begin(), b.end(),
-                              [](char a, char b) {
-                                  return ::tolower(a) == ::tolower(b);
-                              });
+        if (compare_options == CompareOptions::RegisterIndependent)
+        {
+            return std::ranges::equal(a, b, [](char a, char b) { return _fast_to_lower(a) == _fast_to_lower(b); });
+        }
 
         return a == b;
     }
 
-    template<class Iterator>
-    std::string join(const Iterator begin, const Iterator end, std::string_view delimiter)
+    [[nodiscard]] constexpr bool start_with(const std::string& str, const std::string& sub, CompareOptions compare_options = CompareOptions::None)
+    {
+        if (compare_options == CompareOptions::RegisterIndependent)
+        {
+            auto it = std::ranges::mismatch(str, sub, [](char a, char b) { return _fast_to_lower(a) == _fast_to_lower(b); });
+            return it.in2 == sub.end();
+        }
+
+        return str.starts_with(sub);
+    }
+
+    template <class Iterator>
+    [[nodiscard]] std::string join(const Iterator begin, const Iterator end, const std::string& delimiter)
     {
         std::stringstream ss;
         for (Iterator it = begin; it != end; it++)
