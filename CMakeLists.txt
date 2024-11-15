@@ -172,7 +172,7 @@ if (WIN32)
 endif()
 
 if (USE_PROFILER)
-    target_compile_definitions(nitro_api PRIVATE -DNITROAPI_USE_PROFILER)
+    target_compile_definitions(nitro_api PRIVATE -DUSE_OPTICK -DNITROAPI_USE_PROFILER)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
