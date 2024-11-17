@@ -228,6 +228,10 @@ namespace nitroapi
         SZ_GetSpace,
         Host_Shutdown,
         Host_Quit_f,
+        CL_ClearClientState,
+        MD5_Hash_File,
+        COM_ClearCustomizationList,
+        HPAK_FlushHostQueue,
 
         // client.dll
         UserMsg_MOTD = 1000,

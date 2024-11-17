@@ -197,6 +197,10 @@ namespace nitroapi
         { StaticHookId::SZ_GetSpace,                SearchConfig("SZ_GetSpace", SearchType::ExportFunc) },
         { StaticHookId::Host_Shutdown,              SearchConfig("Host_Shutdown", SearchType::ExportFunc) },
         { StaticHookId::Host_Quit_f,                SearchConfig("Host_Quit_f", SearchType::ExportFunc) },
+        { StaticHookId::CL_ClearClientState,        SearchConfig("CL_ClearClientState", SearchType::ExportFunc) },
+        { StaticHookId::MD5_Hash_File,              SearchConfig("MD5_Hash_File", SearchType::ExportFunc) },
+        { StaticHookId::COM_ClearCustomizationList, SearchConfig("COM_ClearCustomizationList", SearchType::ExportFunc) },
+        { StaticHookId::HPAK_FlushHostQueue,        SearchConfig("HPAK_FlushHostQueue", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_

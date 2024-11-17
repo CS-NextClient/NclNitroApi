@@ -567,5 +567,13 @@ namespace nitroapi
         NitroFunctionVoid<>                             Host_Shutdown;
         // void Host_Quit_f()
         NitroFunctionVoid<>                             Host_Quit_f;
+        // void CL_ClearClientState()
+        NitroFunctionVoid<>                             CL_ClearClientState;
+        // qboolean MD5_Hash_File(unsigned char digest[16], char* pszFileName, int bUsefopen, int bSeed, unsigned int seed[4])
+        NitroFunction<qboolean, unsigned char*, char*, int, int, unsigned int*> MD5_Hash_File;
+        // void COM_ClearCustomizationList(customization_t* pHead, qboolean bCleanDecals)
+        NitroFunctionVoid<customization_t*, qboolean>   COM_ClearCustomizationList;
+        // void HPAK_FlushHostQueue()
+        NitroFunctionVoid<>                             HPAK_FlushHostQueue;
     };
 }

@@ -291,6 +291,10 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::SZ_GetSpace>(&engine_data_->SZ_GetSpace);
         RegisterFuncCdecl<StaticHookId::Host_Shutdown>(&engine_data_->Host_Shutdown);
         RegisterFuncCdecl<StaticHookId::Host_Quit_f>(&engine_data_->Host_Quit_f);
+        RegisterFuncCdecl<StaticHookId::CL_ClearClientState>(&engine_data_->CL_ClearClientState);
+        RegisterFuncCdecl<StaticHookId::MD5_Hash_File>(&engine_data_->MD5_Hash_File);
+        RegisterFuncCdecl<StaticHookId::COM_ClearCustomizationList>(&engine_data_->COM_ClearCustomizationList);
+        RegisterFuncCdecl<StaticHookId::HPAK_FlushHostQueue>(&engine_data_->HPAK_FlushHostQueue);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});

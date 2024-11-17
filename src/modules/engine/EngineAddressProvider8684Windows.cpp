@@ -204,6 +204,10 @@ namespace nitroapi
         { StaticHookId::SZ_GetSpace,                SearchConfig(0x2AC90) },
         { StaticHookId::Host_Shutdown,              SearchConfig(0x58040) },
         { StaticHookId::Host_Quit_f,                SearchConfig(0x587E0) },
+        { StaticHookId::CL_ClearClientState,        SearchConfig(0x17710) },
+        { StaticHookId::MD5_Hash_File,              SearchConfig(0x2E120) },
+        { StaticHookId::COM_ClearCustomizationList, SearchConfig(0x28EF0) },
+        { StaticHookId::HPAK_FlushHostQueue,        SearchConfig(0x51280) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
