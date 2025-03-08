@@ -49,7 +49,9 @@ if (WIN32)
             _WIN32
             WIN32
             _WIN32_WINNT=0x0600 #https://docs.microsoft.com/ru-ru/cpp/porting/modifying-winver-and-win32-winnt?view=msvc-160
-            WINVER=0x0600)
+            WINVER=0x0600
+            WIN32_LEAN_AND_MEAN
+    )
 
     target_link_libraries(nitro_utils
             psapi.lib)

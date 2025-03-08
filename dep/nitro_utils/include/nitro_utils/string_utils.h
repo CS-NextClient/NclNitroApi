@@ -110,7 +110,6 @@ namespace nitro_utils
         rtrim(s, [trim_char](unsigned char ch) { return !trim_char; });
     }
 
-
     constexpr void trim(std::string& s)
     {
         ltrim(s);
@@ -127,6 +126,13 @@ namespace nitro_utils
     {
         ltrim(s, condition);
         rtrim(s, condition);
+    }
+
+    constexpr std::string trim_copy(const std::string& s)
+    {
+        std::string copy = s;
+        trim(copy);
+        return copy;
     }
 
     //

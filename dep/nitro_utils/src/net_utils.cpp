@@ -1,6 +1,7 @@
-
 #include <string>
 #include <algorithm>
+#include <format>
+#include <ws2tcpip.h>
 
 #ifdef _WIN32
 #include <Winsock2.h>
@@ -12,7 +13,7 @@
 
 namespace nitro_utils
 {
-    bool inet_stonp(const std::string &ip, uint32_t &nIP, uint16_t &nConnPort, bool bDnsResolve)
+    bool ParseAddress(const std::string& ip, uint32_t& nIP, uint16_t& nConnPort, bool bDnsResolve)
     {
         std::string host, port;
         uint32_t uHost, uPort;
@@ -31,22 +32,27 @@ namespace nitro_utils
                 uPort = stoi(port);
             else uPort = 27015;
         }
-        uHost = (uint32_t)inet_addr(host.c_str());
+
+        if (inet_pton(AF_INET, host.c_str(), &uHost) != TRUE)
+        {
+            uHost = INADDR_NONE;
+        }
 
         if (bDnsResolve && uHost == INADDR_NONE)
         {
-            struct hostent *h = gethostbyname(host.c_str());
+            struct hostent* h = gethostbyname(host.c_str());
             if (h == nullptr) return false;
-            uHost = *(uint32_t *) h->h_addr_list[0];
+            uHost = *(uint32_t*) h->h_addr_list[0];
         }
 
         if (uHost != INADDR_NONE)
         {
-            nIP = htonl(uHost);
+            nIP = ntohl(uHost);
             nConnPort = uPort;
 
             return true;
         }
         return false;
     }
+
 }

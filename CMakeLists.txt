@@ -150,6 +150,7 @@ endif ()
 target_compile_definitions(nitro_api PRIVATE
         NITRO_API_EASYLOGGING
         #easyloggingpp options
+        ELPP_WINSOCK2
         ELPP_THREAD_SAFE
         ELPP_DISABLE_VERBOSE_LOGS
         ELPP_DISABLE_TRACE_LOGS
@@ -168,7 +169,9 @@ if (WIN32)
             _WIN32_WINNT=0x0600
             WINVER=0x0600
             NOMINMAX
-            _UNICODE)
+            _UNICODE
+            WIN32_LEAN_AND_MEAN
+    )
 endif()
 
 if (USE_PROFILER)

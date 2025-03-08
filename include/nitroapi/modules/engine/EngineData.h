@@ -575,5 +575,10 @@ namespace nitroapi
         NitroFunctionVoid<customization_t*, qboolean>   COM_ClearCustomizationList;
         // void HPAK_FlushHostQueue()
         NitroFunctionVoid<>                             HPAK_FlushHostQueue;
+
+        engine_studio_api_t* engine_studio_api          = nullptr;
+
+        // void ClientDLL_HudInit()
+        NitroFunctionVoid<>                             ClientDLL_HudInit;
     };
 }

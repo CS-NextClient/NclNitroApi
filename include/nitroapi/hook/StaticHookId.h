@@ -232,6 +232,7 @@ namespace nitroapi
         MD5_Hash_File,
         COM_ClearCustomizationList,
         HPAK_FlushHostQueue,
+        ClientDLL_HudInit,
 
         // client.dll
         UserMsg_MOTD = 1000,

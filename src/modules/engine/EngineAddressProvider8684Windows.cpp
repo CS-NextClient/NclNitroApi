@@ -208,6 +208,7 @@ namespace nitroapi
         { StaticHookId::MD5_Hash_File,              SearchConfig(0x2E120) },
         { StaticHookId::COM_ClearCustomizationList, SearchConfig(0x28EF0) },
         { StaticHookId::HPAK_FlushHostQueue,        SearchConfig(0x51280) },
+        { StaticHookId::ClientDLL_HudInit,          SearchConfig(0xCA80) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
@@ -287,5 +288,6 @@ namespace nitroapi
         { "cmd_argv",                               SearchConfig(0x2E3B18) },
         { "cvar_vars",                              SearchConfig(0x2F570C) },
         { "key_dest",                               SearchConfig(0x64429c) },
+        { "engine_studio_api",                      SearchConfig(0x153248) },
     };
 }

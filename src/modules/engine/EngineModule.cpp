@@ -93,6 +93,7 @@ namespace nitroapi
         RegisterVar(&engine_data_->cmd_argv, "cmd_argv");
         RegisterVar(&engine_data_->cvar_vars, "cvar_vars");
         RegisterVar(&engine_data_->key_dest, "key_dest");
+        RegisterVar(&engine_data_->engine_studio_api, "engine_studio_api");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);
@@ -295,6 +296,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::MD5_Hash_File>(&engine_data_->MD5_Hash_File);
         RegisterFuncCdecl<StaticHookId::COM_ClearCustomizationList>(&engine_data_->COM_ClearCustomizationList);
         RegisterFuncCdecl<StaticHookId::HPAK_FlushHostQueue>(&engine_data_->HPAK_FlushHostQueue);
+        RegisterFuncCdecl<StaticHookId::ClientDLL_HudInit>(&engine_data_->ClientDLL_HudInit);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});

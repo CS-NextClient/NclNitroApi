@@ -201,6 +201,7 @@ namespace nitroapi
         { StaticHookId::MD5_Hash_File,              SearchConfig("MD5_Hash_File", SearchType::ExportFunc) },
         { StaticHookId::COM_ClearCustomizationList, SearchConfig("COM_ClearCustomizationList", SearchType::ExportFunc) },
         { StaticHookId::HPAK_FlushHostQueue,        SearchConfig("HPAK_FlushHostQueue", SearchType::ExportFunc) },
+        { StaticHookId::ClientDLL_HudInit,          SearchConfig("ClientDLL_HudInit", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_
@@ -280,5 +281,6 @@ namespace nitroapi
         { "cmd_argv",                               SearchConfig("cmd_argv", SearchType::ExportFunc) },
         { "cvar_vars",                              SearchConfig("cvar_vars", SearchType::ExportFunc) },
         { "key_dest",                               SearchConfig("key_dest", SearchType::ExportFunc) },
+        { "engine_studio_api",                      SearchConfig("engine_studio_api", SearchType::ExportFunc) },
     };
 }
