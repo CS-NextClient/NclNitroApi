@@ -1,12 +1,12 @@
 {
   "name" : "nitro-api",
   "version-string" : "1.0.0",
-  "builtin-baseline" : "a34c873a9717a888f58dc05268dea15592c2f0ff",
+  "builtin-baseline" : "41c447cc210dc39aa85d4a5f58b4a1b9e573b3dc",
   "dependencies" : [ {
     "name" : "magic-enum",
-    "version>=" : "0.9.5"
+    "version>=" : "0.9.7"
   }, {
     "name" : "xbyak",
-    "version>=" : "6.73"
+    "version>=" : "7.24.2"
   }]
 }
