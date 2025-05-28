@@ -36,7 +36,6 @@ namespace nitroapi
         { StaticHookId::BuildSurfaceDisplayList,    SearchConfig(0x497B0) },
         { StaticHookId::COM_InitArgv,               SearchConfig(0x2B370) },
         { StaticHookId::COM_CreateCustomization,    SearchConfig(0x29020) },
-        //{ StaticHookId::CL_Parse_StuffText,         SearchConfig("56 E8 ? ? ? ? 8B F0 56 E8 ? ? ? ? 83 C4 04 85 C0 56 75 0F") },
         { StaticHookId::Draw_DecalSetName,          SearchConfig(0x2F750) },
         { StaticHookId::SetCareerAudioState,        SearchConfig(0x8E260) },
         { StaticHookId::Cmd_TokenizeString,         SearchConfig(0x27F30) },

@@ -166,11 +166,11 @@ namespace nitro_utils
         return key_value_sections_[key_value_section];
     }
 
-    bool FileConfigProvider::set_value(const std::string &key_value_section, const std::string &key_set, const std::string &value_set, bool update_file_config)
+    bool FileConfigProvider::set_value(const std::string &key_value_section, const std::string &key_set, const std::string &value_set, bool update_config_file)
     {
         key_value_sections_[key_value_section][key_set] = value_set;
 
-        if (!update_file_config)
+        if (!update_config_file)
             return true;
 
         int section_line = 0;

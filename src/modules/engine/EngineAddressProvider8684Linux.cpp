@@ -35,7 +35,6 @@ namespace nitroapi
         { StaticHookId::BuildSurfaceDisplayList,    SearchConfig("BuildSurfaceDisplayList", SearchType::ExportFunc) },
         { StaticHookId::COM_InitArgv,               SearchConfig("COM_InitArgv", SearchType::ExportFunc) },
         { StaticHookId::COM_CreateCustomization,    SearchConfig("COM_CreateCustomization", SearchType::ExportFunc) },
-        //{ StaticHookId::CL_Parse_StuffText,         SearchConfig() },
         { StaticHookId::Draw_DecalSetName,          SearchConfig("Draw_DecalSetName", SearchType::ExportFunc) },
         { StaticHookId::SetCareerAudioState,        SearchConfig("SetCareerAudioState", SearchType::ExportFunc) },
         { StaticHookId::Cmd_TokenizeString,         SearchConfig("Cmd_TokenizeString", SearchType::ExportFunc) },
