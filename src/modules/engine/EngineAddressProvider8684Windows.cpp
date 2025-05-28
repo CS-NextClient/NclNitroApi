@@ -289,5 +289,6 @@ namespace nitroapi
         { "cvar_vars",                              SearchConfig(0x2F570C) },
         { "key_dest",                               SearchConfig(0x64429c) },
         { "engine_studio_api",                      SearchConfig(0x153248) },
+        { ".data:arb_multitexture",                 SearchConfig("GL_ARB_multitexture ", SearchType::String) },
     };
 }

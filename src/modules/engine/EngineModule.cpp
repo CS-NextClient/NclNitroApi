@@ -94,6 +94,7 @@ namespace nitroapi
         RegisterVar(&engine_data_->cvar_vars, "cvar_vars");
         RegisterVar(&engine_data_->key_dest, "key_dest");
         RegisterVar(&engine_data_->engine_studio_api, "engine_studio_api");
+        RegisterVar(&engine_data_->data_arb_multitexture, ".data:arb_multitexture");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);

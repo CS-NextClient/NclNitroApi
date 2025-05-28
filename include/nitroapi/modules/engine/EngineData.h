@@ -580,5 +580,8 @@ namespace nitroapi
 
         // void ClientDLL_HudInit()
         NitroFunctionVoid<>                             ClientDLL_HudInit;
+
+        // "GL_ARB_multitexture "
+        char (*data_arb_multitexture)[21]               = nullptr;
     };
 }
