@@ -27,27 +27,30 @@ namespace nitroapi
     {
         switch (search_type)
         {
+            default:
+            case SearchType::Pattern:
+                return mem_scanner.FindPattern(search_string.c_str());
+
             case SearchType::PatternEx:
-                return (uint32_t)mem_scanner.FindPattern2(search_string);
+                return mem_scanner.FindPattern2(search_string);
 
             case SearchType::ExportFunc:
                 return (uint32_t)nitro_utils::GetProcAddress(mem_scanner.Module(), search_string.c_str());
 
             case SearchType::Offset:
-                return (uint32_t)(mem_scanner.ModuleStart() + offset);
+                return mem_scanner.ModuleStart() + offset;
 
             case SearchType::PatternAndOffset:
-                return (uint32_t)mem_scanner.FindPattern(search_string.c_str()) + offset;
+                return mem_scanner.FindPattern(search_string.c_str()) + offset;
 
             case SearchType::PatternExAndOffset:
-                return (uint32_t)mem_scanner.FindPattern2(search_string) + offset;
+                return mem_scanner.FindPattern2(search_string) + offset;
+
+            case SearchType::String:
+                return mem_scanner.FindString(search_string.c_str());
 
             case SearchType::NotPresent:
                 return 0;
-
-            default:
-            case SearchType::Pattern:
-                return (uint32_t)mem_scanner.FindPattern(search_string.c_str());
         }
     }
 }

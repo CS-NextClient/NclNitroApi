@@ -13,6 +13,7 @@ namespace nitroapi
         Offset,
         PatternAndOffset,
         PatternExAndOffset,
+        String,
         NotPresent
     };
 
