@@ -7,7 +7,15 @@ namespace nitro_utils
     FileConfigProvider::FileConfigProvider(const std::string& file_path) :
         file_path_(file_path)
     {
-        ParseFile(file_path,
+        ReloadFromFile();
+    }
+
+    void FileConfigProvider::ReloadFromFile()
+    {
+        key_value_sections_.clear();
+        list_sections_.clear();
+
+        ParseFile(file_path_,
                   [this](const std::string& section, const std::string& list_item, int line) { list_sections_[section].emplace_back(list_item); },
                   [this](const std::string& section, const std::string& key, const std::string& value, int line) { key_value_sections_[section][key] = value; });
     }

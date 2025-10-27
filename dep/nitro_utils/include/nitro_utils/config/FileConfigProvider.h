@@ -25,6 +25,8 @@ namespace nitro_utils
     public:
         explicit FileConfigProvider(const std::string& file_path);
 
+        void ReloadFromFile();
+
         [[nodiscard]] std::optional<std::vector<std::string>> get_list(const std::string &list_section) override;
         [[nodiscard]] std::optional<std::string>get_value(const std::string &key_value_section, const std::string &key) override;
         [[nodiscard]] std::optional<std::unordered_map<std::string, std::string>> get_all_values(const std::string& key_value_section) override;
