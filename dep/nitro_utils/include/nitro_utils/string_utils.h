@@ -227,6 +227,13 @@ namespace nitro_utils
         return a == b;
     }
 
+    [[nodiscard]] constexpr bool is_alpha_numeric_ascii(char c) noexcept
+    {
+        return (c >= 'A' && c <= 'Z') ||
+            (c >= 'a' && c <= 'z') ||
+            (c >= '0' && c <= '9');
+    }
+
     [[nodiscard]] constexpr bool start_with(const std::string& str, const std::string& sub, CompareOptions compare_options = CompareOptions::None)
     {
         if (compare_options == CompareOptions::RegisterIndependent)
