@@ -583,5 +583,52 @@ namespace nitroapi
 
         // "GL_ARB_multitexture "
         char (*data_arb_multitexture)[21]               = nullptr;
+      
+        // void GL_UnloadTextures()
+        NitroFunctionVoid<>                             GL_UnloadTextures;
+        // void Cbuf_InsertText(const char* text)
+        NitroFunctionVoid<const char*>                  Cbuf_InsertText;
+        // void* W_GetLumpName(int wad, const char *name)
+        NitroFunction<void*, int, const char*>          W_GetLumpName;
+        // void Draw_Init()
+        NitroFunctionVoid<>                             Draw_Init;
+        // void Draw_Shutdown()
+        NitroFunctionVoid<>                             Draw_Shutdown;
+        // qpic_t* Draw_PicFromWad(const char *name)
+        NitroFunction<void*, const char*>               Draw_PicFromWad;
+        // void Draw_CacheWadHandler(cachewad_t* wad, PFNCACHE fn, int extraDataSize)
+        NitroFunctionVoid<cachewad_t*, PFNCACHE, int>   Draw_CacheWadHandler;
+        // void Draw_FreeWad(cachewad_t* pWad)
+        NitroFunctionVoid<cachewad_t*>                  Draw_FreeWad;
+        // void Draw_CacheWadInit(const char* name, int cacheMax, cachewad_t* wad)
+        NitroFunctionVoid<const char*, int, cachewad_t*>Draw_CacheWadInit;
+        // void Draw_CacheWadInitFromFile(FileHandle_t hFile, int len, const char *name, int cacheMax, cachewad_t *wad)
+        NitroFunctionVoid<FileHandle_t, int, const char*, int, cachewad_t*> Draw_CacheWadInitFromFile;
+        // void Draw_MiptexTexture(cachewad_t* wad, unsigned char* data)
+        NitroFunctionVoid<cachewad_t*, unsigned char*>  Draw_MiptexTexture;
+        // void V_UpdatePalette()
+        NitroFunctionVoid<>                             V_UpdatePalette;
+        // qboolean V_CheckGamma()
+        NitroFunction<qboolean>                         V_CheckGamma;
+        // void BuildGammaTable(float g)
+        NitroFunctionVoid<float>                        BuildGammaTable;
+        // void GL_Config()
+        NitroFunctionVoid<>                             GL_Config;
+        // qboolean Cvar_HookVariable(const char* var_name, cvarhook_t* hook)
+        NitroFunction<qboolean, const char*, void*>     Cvar_HookVariable;
+        // void VGUI2_Draw_Init()
+        NitroFunctionVoid<>                             VGUI2_Draw_Init;
+        // void Cmd_AddCommand(char* cmd_name, xcommand_t function)
+        NitroFunctionVoid<const char*, xcommand_t>      Cmd_AddCommand;
+        // void VGUI2_Draw_SetTextColor(int r, int g, int b)
+        NitroFunctionVoid<int, int, int>                VGUI2_Draw_SetTextColor;
+        // qboolean DT_SetRenderState(int diffuseId)
+        NitroFunction<qboolean, int>                    DT_SetRenderState;
+        // void R_ForceCVars(qboolean mp)
+        NitroFunctionVoid<qboolean>                     R_ForceCVars;
+        // int GL_LoadTexture2(const char* identifier, int textureType, int width, int height, uint8_t* data, int mipmap, int iType, uint8_t* pPal, int filter)
+        NitroFunction<int, const char*, int, int, int, uint8_t*, int, int, uint8_t*, int> GL_LoadTexture2;
+        // void DT_LoadDetailTexture(const char *diffuseName, int diffuseId)
+        NitroFunctionVoid<const char*, int>             DT_LoadDetailTexture;
     };
 }
