@@ -440,7 +440,7 @@ namespace nitroapi
         // void R_RenderView()
         NitroFunctionVoid<>                             R_RenderView;
         // void GL_SelectTexture(GLenum target)
-        NitroFunctionVoid<GLenum>                       GL_SelectTexture;
+        NitroFunctionVoid<unsigned int>                 GL_SelectTexture;
         // int GL_LoadTexture(const char* identifier, GL_TEXTURETYPE textureType, int width, int height, uint8_t* data, int mipmap, int iType, uint8_t* pPal)
         NitroFunction<int, const char*, int, int, int, uint8_t*, int, int, uint8_t*> GL_LoadTexture;
         // void GL_Bind(int texnum)
@@ -505,7 +505,7 @@ namespace nitroapi
         NitroFunctionVoid<>                             R_Clear;
 
         cl_entity_t** currententity                     = nullptr;
-        GLfloat* r_blend                                = nullptr;
+        float* r_blend                                  = nullptr;
         vec3_t* r_entorigin                             = nullptr;
         qboolean* g_bUserFogOn                          = nullptr;
         int* numTransObjs                               = nullptr;
