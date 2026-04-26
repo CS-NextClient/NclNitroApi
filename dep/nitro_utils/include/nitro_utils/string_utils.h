@@ -191,7 +191,69 @@ namespace nitro_utils
     //  SPLIT FUNCTIONS
     //
 
-    void split(const std::string& str, const std::string& splitBy, std::vector<std::string>& tokens);
+    enum class SplitBehavior
+    {
+        KeepRemainder,
+        DiscardRemainder
+    };
+
+    size_t split(std::string_view str, std::string_view split_by, std::vector<std::string_view>& tokens);
+
+    template <size_t Count>
+    size_t split(
+        std::string_view str,
+        std::string_view split_by,
+        std::array<std::string_view, Count>& tokens,
+        SplitBehavior behavior = SplitBehavior::DiscardRemainder
+    )
+    {
+        if constexpr (Count == 0)
+        {
+            return 0;
+        }
+
+        if (split_by.empty())
+        {
+            tokens[0] = str;
+            return 1;
+        }
+
+        size_t token_index = 0;
+        size_t pos = 0;
+
+        while (pos < str.size())
+        {
+            if (token_index + 1 == Count && behavior == SplitBehavior::KeepRemainder)
+            {
+                tokens[token_index++] = str.substr(pos);
+                return token_index;
+            }
+
+            size_t found = str.find(split_by, pos);
+
+            if (found == std::string_view::npos)
+            {
+                tokens[token_index++] = str.substr(pos);
+                return token_index;
+            }
+
+            tokens[token_index++] = str.substr(pos, found - pos);
+            pos = found + split_by.size();
+
+            if (token_index == Count)
+            {
+                return token_index;
+            }
+        }
+
+        if (pos == str.size() && token_index < Count)
+        {
+            tokens[token_index++] = std::string_view{};
+        }
+
+        return token_index;
+    }
+    
     size_t split_in_args(const std::string& str, std::vector<std::string>& args, size_t maxArgs);
 
     //

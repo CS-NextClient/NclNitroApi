@@ -7,24 +7,38 @@
 
 namespace nitro_utils
 {
-    void split(const std::string& str, const std::string& splitBy, std::vector<std::string>& tokens)
+    size_t split(std::string_view str, std::string_view split_by, std::vector<std::string_view>& tokens)
     {
-        tokens.push_back(str);
+        tokens.clear();
 
-        size_t splitAt;
-        size_t splitLen = splitBy.size();
-        std::string frag;
-
-        while(true)
+        if (split_by.empty())
         {
-            frag = tokens.back();
-            splitAt = frag.find(splitBy);
-            if (splitAt == std::string::npos)
-                break;
-
-            tokens.back() = frag.substr(0, splitAt);
-            tokens.push_back(frag.substr(splitAt+splitLen, frag.size()-(splitAt+splitLen)));
+            tokens.push_back(str);
+            return 1;
         }
+
+        size_t pos = 0;
+
+        while (pos < str.size())
+        {
+            size_t found = str.find(split_by, pos);
+
+            if (found == std::string_view::npos)
+            {
+                tokens.emplace_back(str.substr(pos));
+                return tokens.size();
+            }
+
+            tokens.emplace_back(str.substr(pos, found - pos));
+            pos = found + split_by.size();
+        }
+
+        if (pos == str.size())
+        {
+            tokens.emplace_back(std::string_view{});
+        }
+
+        return tokens.size();
     }
 
     size_t split_in_args(const std::string& str, std::vector<std::string>& args, size_t maxArgs)

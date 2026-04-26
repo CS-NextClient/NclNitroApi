@@ -129,7 +129,7 @@ namespace nitro_utils
         if (line[line.length() - 1] != ']')
             return false;
 
-        std::vector<std::string> tokens;
+        std::vector<std::string_view> tokens;
         split(line.substr(1, line.length() - 2), ":", tokens);
 
         if (tokens.empty())
