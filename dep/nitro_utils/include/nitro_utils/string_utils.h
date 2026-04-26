@@ -199,6 +199,22 @@ namespace nitro_utils
 
     size_t split(std::string_view str, std::string_view split_by, std::vector<std::string_view>& tokens);
 
+    inline size_t split(const char* str, std::string_view split_by, std::vector<std::string_view>& tokens)
+    {
+        return split(std::string_view(str), split_by, tokens);
+    }
+
+    template <size_t Count>
+    size_t split(
+        const char* str,
+        std::string_view split_by,
+        std::array<std::string_view, Count>& tokens,
+        SplitBehavior behavior = SplitBehavior::DiscardRemainder
+    )
+    {
+        return split(std::string_view(str), split_by, tokens, behavior);
+    }
+
     template <size_t Count>
     size_t split(
         std::string_view str,
@@ -253,7 +269,12 @@ namespace nitro_utils
 
         return token_index;
     }
-    
+
+    size_t split(std::string&&, std::string_view, std::vector<std::string_view>&) = delete;
+
+    template <size_t Count>
+    size_t split(std::string&&, std::string_view, std::array<std::string_view, Count>&, SplitBehavior = SplitBehavior::DiscardRemainder) = delete;
+
     size_t split_in_args(const std::string& str, std::vector<std::string>& args, size_t maxArgs);
 
     //

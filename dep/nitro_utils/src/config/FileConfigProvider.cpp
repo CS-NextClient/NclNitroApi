@@ -129,8 +129,9 @@ namespace nitro_utils
         if (line[line.length() - 1] != ']')
             return false;
 
+        std::string section_content = line.substr(1, line.length() - 2);
         std::vector<std::string_view> tokens;
-        split(line.substr(1, line.length() - 2), ":", tokens);
+        split(section_content, ":", tokens);
 
         if (tokens.empty())
             return false;
