@@ -167,7 +167,7 @@ namespace nitro_utils
         return section[key];
     }
 
-    std::optional<std::unordered_map<std::string, std::string>> FileConfigProvider::get_all_values(const std::string &key_value_section)
+    std::optional<transparent_string_map<std::string>> FileConfigProvider::get_all_values(const std::string& key_value_section)
     {
         if (key_value_sections_.count(key_value_section) == 0)
             return std::nullopt;

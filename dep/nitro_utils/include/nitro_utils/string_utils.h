@@ -140,7 +140,7 @@ namespace nitro_utils
     //
 
     // from https://en.cppreference.com/w/cpp/string/basic_string/replace
-    constexpr std::size_t replace_all(std::string& inout, const std::string& what, const std::string& with)
+    constexpr std::size_t replace_all(std::string& inout, std::string_view what, std::string_view with)
     {
         std::size_t count{};
         for (std::string::size_type pos{};
@@ -152,7 +152,7 @@ namespace nitro_utils
         return count;
     }
 
-    [[nodiscard]] constexpr std::string replace_all_copy(const std::string& str, const std::string& what, const std::string& with)
+    [[nodiscard]] constexpr std::string replace_all_copy(const std::string& str, std::string_view what, std::string_view with)
     {
         std::string result(str);
 
@@ -161,7 +161,7 @@ namespace nitro_utils
         return result;
     }
 
-    constexpr void replace_nth(std::string& inout, const std::string& what, int nth, const std::string& with)
+    constexpr void replace_nth(std::string& inout, std::string_view what, int nth, std::string_view with)
     {
         size_t start_pos = 0;
         int i = 0;
@@ -178,7 +178,7 @@ namespace nitro_utils
         }
     }
 
-    [[nodiscard]] constexpr std::string replace_nth_copy(const std::string& str, const std::string& what, int nth, const std::string& with)
+    [[nodiscard]] constexpr std::string replace_nth_copy(const std::string& str, std::string_view what, int nth, std::string_view with)
     {
         std::string result(str);
 
@@ -289,7 +289,7 @@ namespace nitro_utils
     // VARIOUS FUNCTIONS
     //
 
-    [[nodiscard]] constexpr bool contains(const std::string& str, const std::string& sub, CompareOptions compare_options = CompareOptions::None)
+    [[nodiscard]] constexpr bool contains(std::string_view str, std::string_view sub, CompareOptions compare_options = CompareOptions::None)
     {
         if (compare_options == CompareOptions::RegisterIndependent)
         {
@@ -300,7 +300,7 @@ namespace nitro_utils
         return str.find(sub) != std::string::npos;
     }
 
-    [[nodiscard]] constexpr bool equals(const std::string& a, const std::string& b, CompareOptions compare_options = CompareOptions::None)
+    [[nodiscard]] constexpr bool equals(std::string_view a, std::string_view b, CompareOptions compare_options = CompareOptions::None)
     {
         if (compare_options == CompareOptions::RegisterIndependent)
         {
@@ -317,7 +317,7 @@ namespace nitro_utils
             (c >= '0' && c <= '9');
     }
 
-    [[nodiscard]] constexpr bool start_with(const std::string& str, const std::string& sub, CompareOptions compare_options = CompareOptions::None)
+    [[nodiscard]] constexpr bool start_with(std::string_view str, std::string_view sub, CompareOptions compare_options = CompareOptions::None)
     {
         if (compare_options == CompareOptions::RegisterIndependent)
         {
@@ -329,7 +329,7 @@ namespace nitro_utils
     }
 
     template <class Iterator>
-    [[nodiscard]] std::string join(const Iterator begin, const Iterator end, const std::string& delimiter)
+    [[nodiscard]] std::string join(const Iterator begin, const Iterator end, std::string_view delimiter)
     {
         std::stringstream ss;
         for (Iterator it = begin; it != end; it++)

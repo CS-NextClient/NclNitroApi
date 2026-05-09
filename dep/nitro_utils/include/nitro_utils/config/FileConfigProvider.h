@@ -1,11 +1,12 @@
 #pragma once
+#include "ConfigProviderInterface.h"
 
 #include <unordered_map>
 #include <vector>
 #include <string>
-#include <variant>
 #include <functional>
-#include "ConfigProviderInterface.h"
+
+#include <nitro_utils/transparent_string_lookup.h>
 
 namespace nitro_utils
 {
@@ -17,8 +18,8 @@ namespace nitro_utils
             List
         };
 
-        std::unordered_map<std::string, std::unordered_map<std::string, std::string>> key_value_sections_;
-        std::unordered_map<std::string, std::vector<std::string>> list_sections_;
+        transparent_string_map<transparent_string_map<std::string>> key_value_sections_;
+        transparent_string_map<std::vector<std::string>> list_sections_;
 
         std::string file_path_;
 
@@ -29,7 +30,7 @@ namespace nitro_utils
 
         [[nodiscard]] std::optional<std::vector<std::string>> get_list(const std::string &list_section) override;
         [[nodiscard]] std::optional<std::string>get_value(const std::string &key_value_section, const std::string &key) override;
-        [[nodiscard]] std::optional<std::unordered_map<std::string, std::string>> get_all_values(const std::string& key_value_section) override;
+        [[nodiscard]] std::optional<transparent_string_map<std::string>> get_all_values(const std::string& key_value_section) override;
 
         bool set_value(const std::string &key_value_section, const std::string &key, const std::string &value, bool update_config_file = false);
 
