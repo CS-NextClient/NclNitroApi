@@ -91,9 +91,8 @@ namespace nitro_utils
 
     constexpr void ltrim(std::string& s, char trim_char)
     {
-        ltrim(s, [trim_char](unsigned char ch) { return !trim_char; });
+        ltrim(s, [trim_char](unsigned char ch) { return ch != trim_char; });
     }
-
 
     constexpr void rtrim(std::string& s, const std::function<bool(unsigned char)>& condition)
     {
@@ -107,7 +106,7 @@ namespace nitro_utils
 
     constexpr void rtrim(std::string& s, char trim_char)
     {
-        rtrim(s, [trim_char](unsigned char ch) { return !trim_char; });
+        rtrim(s, [trim_char](unsigned char ch) { return ch != trim_char; });
     }
 
     constexpr void trim(std::string& s)

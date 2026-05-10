@@ -4,6 +4,7 @@
 
 namespace nitro_utils
 {
+    // NOTE: all keys and values are stored in lowercase (affected only for key-value sections)
     FileConfigProvider::FileConfigProvider(const std::string& file_path) :
         file_path_(file_path)
     {
