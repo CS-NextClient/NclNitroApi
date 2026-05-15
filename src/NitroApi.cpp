@@ -264,10 +264,7 @@ namespace nitroapi
     LONG WINAPI GlobalExceptionHandlerWin32(EXCEPTION_POINTERS* exception_pointers)
     {
         if (g_WriteMiniDumpCallback != nullptr)
-        {
             g_WriteMiniDumpCallback(exception_pointers);
-            return EXCEPTION_EXECUTE_HANDLER;
-        }
 
         return EXCEPTION_CONTINUE_SEARCH;
     }
