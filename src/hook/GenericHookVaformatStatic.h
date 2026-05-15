@@ -2,6 +2,7 @@
 
 #include <cstdarg>
 #include <type_traits>
+#include <utility>
 #include <funchook.h>
 #include <easylogging++.h>
 #include <strtools.h>
@@ -87,7 +88,7 @@ namespace nitroapi
             }
 
 #ifdef NITROAPI_USE_PROFILER
-            s_callback_ = [hook_callback](TArgs... args) -> TResult {
+            s_callback_ = [hook_callback = std::move(hook_callback)](TArgs... args) -> TResult {
                 if (!g_ProfilerInsideFrame)
                     return hook_callback(std::forward<TArgs>(args)...);
 
@@ -100,7 +101,7 @@ namespace nitroapi
                 return hook_callback(std::forward<TArgs>(args)...);
             };
 #else
-            s_callback_ = hook_callback;
+            s_callback_ = std::move(hook_callback);
 #endif
 
             LOG_IF(hook_active_, WARNING) << "[vaformat hook] Hook callback changed for " << magic_enum::enum_name(HookId);

@@ -143,12 +143,12 @@ namespace nitroapi
         template<class TResult, class... TArgs>
         void RegisterFunc(NitroFunctionBase<TResult, TArgs...>* nitro_function, std::function<void(nitro_utils::SysModule)>&& on_lib_loaded, const std::string& description)
         {
-            auto* chain = new HandlersChain<TResult, TArgs...>();
+            auto* chain = new HandlersChain<TResult, TArgs...>(description);
             nitro_function->SetChain(chain);
 
             on_library_loaded_.emplace_back(std::move(on_lib_loaded));
 
-            on_library_unloaded_.emplace_back([this, nitro_function, description]() {
+            on_library_unloaded_.emplace_back([this, nitro_function] {
                 auto* hook = nitro_function->GetHook();
                 nitro_function->DetachHook();
 

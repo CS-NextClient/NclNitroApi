@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utility>
 #include <funchook.h>
 #include <xbyak.h>
 #include <easylogging++.h>
@@ -151,7 +152,7 @@ namespace nitroapi
                 return;
             }
 
-            hook_callback_ = hook_callback;
+            hook_callback_ = std::move(hook_callback);
 
             LOG_IF(hook_active_, WARNING) << "[jit hook] Hook callback changed";
 
