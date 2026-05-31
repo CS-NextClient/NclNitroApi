@@ -231,6 +231,15 @@ namespace nitroapi
         { StaticHookId::R_ForceCVars,               SearchConfig(0x45390) },
         { StaticHookId::GL_LoadTexture2,            SearchConfig(0x3EFA0) },
         { StaticHookId::DT_LoadDetailTexture,       SearchConfig(0x338E0) },
+        { StaticHookId::CL_ClearState,              SearchConfig(0x177B0) },
+        { StaticHookId::CL_StopPlayback,            SearchConfig(0xFD5D) },
+        { StaticHookId::Host_ShutdownServer,        SearchConfig(0x56D30) },
+        { StaticHookId::Steam_GSTerminateGameConnection, SearchConfig(0xA52D0) },
+        { StaticHookId::CL_Stop_f,                  SearchConfig(0xFEBD) },
+        { StaticHookId::NET_LeaveGroup,             SearchConfig(0x695D0) },
+        { StaticHookId::Netchan_Transmit,           SearchConfig(0x64Ec0) },
+        { StaticHookId::Netchan_Clear,              SearchConfig(0x64C20) },
+        { StaticHookId::StopLoadingProgressBar,     SearchConfig(0x7750) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
@@ -312,5 +321,9 @@ namespace nitroapi
         { "key_dest",                               SearchConfig(0x64429c) },
         { "engine_studio_api",                      SearchConfig(0x153248) },
         { ".data:arb_multitexture",                 SearchConfig("GL_ARB_multitexture ", SearchType::String) },
+        { "net_local_adr",                          SearchConfig(0xAA2740) },
+        { "g_GameServerAddress",                    SearchConfig(0x16C9EC) },
+        { "g_LastScreenUpdateTime",                 SearchConfig(0x16CF24) },
+        { "maxTransObjs",                           SearchConfig(0x6B7900) },
     };
 }

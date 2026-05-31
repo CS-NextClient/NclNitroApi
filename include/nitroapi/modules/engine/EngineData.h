@@ -630,5 +630,29 @@ namespace nitroapi
         NitroFunction<int, const char*, int, int, int, uint8_t*, int, int, uint8_t*, int> GL_LoadTexture2;
         // void DT_LoadDetailTexture(const char *diffuseName, int diffuseId)
         NitroFunctionVoid<const char*, int>             DT_LoadDetailTexture;
+        
+        netadr_t* net_local_adr                         = nullptr;
+        netadr_t* g_GameServerAddress                   = nullptr;
+        float* g_LastScreenUpdateTime                   = nullptr;
+        int* maxTransObjs                               = nullptr;
+        
+        // void CL_ClearState(qboolean quiet)
+        NitroFunctionVoid<qboolean>                     CL_ClearState;
+        // void CL_StopPlayback()
+        NitroFunctionVoid<>                             CL_StopPlayback;
+        // void Host_ShutdownServer(qboolean crash)
+        NitroFunctionVoid<qboolean>                     Host_ShutdownServer;
+        // void Steam_GSTerminateGameConnection(uint32_t ip, uint16_t port)
+        NitroFunctionVoid<uint32_t, uint16_t>           Steam_GSTerminateGameConnection;
+        // void CL_Stop_f()
+        NitroFunctionVoid<>                             CL_Stop_f;
+        // qboolean NET_LeaveGroup(netsrc_t sock, netadr_t addr)
+        NitroFunction<qboolean, netsrc_t, netadr_t>     NET_LeaveGroup;
+        // void Netchan_Transmit(netchan_t* chan, int length, uint8_t* data)
+        NitroFunctionVoid<netchan_t*, int, uint8_t*>    Netchan_Transmit;
+        // void Netchan_Clear(netchan_t* chan)
+        NitroFunctionVoid<netchan_t*>                   Netchan_Clear;
+        // void StopLoadingProgressBar()
+        NitroFunctionVoid<>                             StopLoadingProgressBar;
     };
 }

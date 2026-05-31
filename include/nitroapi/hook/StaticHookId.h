@@ -256,6 +256,15 @@ namespace nitroapi
         R_ForceCVars,
         GL_LoadTexture2,
         DT_LoadDetailTexture,
+        CL_ClearState,
+        CL_StopPlayback,
+        Host_ShutdownServer,
+        Steam_GSTerminateGameConnection,
+        CL_Stop_f,
+        NET_LeaveGroup,
+        Netchan_Transmit,
+        Netchan_Clear,
+        StopLoadingProgressBar,
 
         // client.dll
         UserMsg_MOTD = 1000,

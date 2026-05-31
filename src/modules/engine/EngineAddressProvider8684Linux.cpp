@@ -224,6 +224,15 @@ namespace nitroapi
         { StaticHookId::R_ForceCVars,               SearchConfig("R_ForceCVars", SearchType::ExportFunc) },
         { StaticHookId::GL_LoadTexture2,            SearchConfig("GL_LoadTexture2", SearchType::ExportFunc) },
         { StaticHookId::DT_LoadDetailTexture,       SearchConfig("DT_LoadDetailTexture", SearchType::ExportFunc) },
+        { StaticHookId::CL_ClearState,              SearchConfig("CL_ClearState", SearchType::ExportFunc) },
+        { StaticHookId::CL_StopPlayback,            SearchConfig("CL_StopPlayback", SearchType::ExportFunc) },
+        { StaticHookId::Host_ShutdownServer,        SearchConfig("Host_ShutdownServer", SearchType::ExportFunc) },
+        { StaticHookId::Steam_GSTerminateGameConnection, SearchConfig("Steam_GSTerminateGameConnection", SearchType::ExportFunc) },
+        { StaticHookId::CL_Stop_f,                  SearchConfig("CL_Stop_f", SearchType::ExportFunc) },
+        { StaticHookId::NET_LeaveGroup,             SearchConfig("NET_LeaveGroup", SearchType::ExportFunc) },
+        { StaticHookId::Netchan_Transmit,           SearchConfig("Netchan_Transmit", SearchType::ExportFunc) },
+        { StaticHookId::Netchan_Clear,              SearchConfig("Netchan_Clear", SearchType::ExportFunc) },
+        { StaticHookId::StopLoadingProgressBar,        SearchConfig("StopLoadingProgressBar", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_
@@ -304,5 +313,9 @@ namespace nitroapi
         { "cvar_vars",                              SearchConfig("cvar_vars", SearchType::ExportFunc) },
         { "key_dest",                               SearchConfig("key_dest", SearchType::ExportFunc) },
         { "engine_studio_api",                      SearchConfig("engine_studio_api", SearchType::ExportFunc) },
+        { "net_local_adr",                          SearchConfig("net_local_adr", SearchType::ExportFunc) },
+        { "g_GameServerAddress",                    SearchConfig("g_GameServerAddress", SearchType::ExportFunc) },
+        { "g_LastScreenUpdateTime",                 SearchConfig("g_LastScreenUpdateTime", SearchType::ExportFunc) },
+        { "maxTransObjs",                           SearchConfig("maxTransObjs", SearchType::ExportFunc) },
     };
 }
