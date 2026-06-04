@@ -317,5 +317,6 @@ namespace nitroapi
         { "g_GameServerAddress",                    SearchConfig("g_GameServerAddress", SearchType::ExportFunc) },
         { "g_LastScreenUpdateTime",                 SearchConfig("g_LastScreenUpdateTime", SearchType::ExportFunc) },
         { "maxTransObjs",                           SearchConfig("maxTransObjs", SearchType::ExportFunc) },
+        { "gLoadSky",                               SearchConfig("gLoadSky", SearchType::ExportFunc) },
     };
 }

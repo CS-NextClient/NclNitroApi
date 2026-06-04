@@ -99,6 +99,7 @@ namespace nitroapi
         RegisterVar(&engine_data_->g_GameServerAddress, "g_GameServerAddress");
         RegisterVar(&engine_data_->g_LastScreenUpdateTime, "g_LastScreenUpdateTime");
         RegisterVar(&engine_data_->maxTransObjs, "maxTransObjs");
+        RegisterVar(&engine_data_->gLoadSky, "gLoadSky");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);

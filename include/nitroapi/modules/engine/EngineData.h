@@ -635,7 +635,8 @@ namespace nitroapi
         netadr_t* g_GameServerAddress                   = nullptr;
         float* g_LastScreenUpdateTime                   = nullptr;
         int* maxTransObjs                               = nullptr;
-        
+        int* gLoadSky                                   = nullptr;
+
         // void CL_ClearState(qboolean quiet)
         NitroFunctionVoid<qboolean>                     CL_ClearState;
         // void CL_StopPlayback()
