@@ -134,6 +134,32 @@ namespace nitro_utils
         return copy;
     }
 
+    // Drops redundant fractional zeros from a decimal-number string
+    // ("0.800000" -> "0.8", "1.000000" -> "1"). Non-numeric strings
+    // (e.g. "255 255 255") are left unchanged.
+    constexpr void trim_float_zeros(std::string& s)
+    {
+        if (s.find('.') == std::string::npos)
+        {
+            return;
+        }
+
+        if (s.find_first_not_of("0123456789.+-") != std::string::npos)
+        {
+            return;
+        }
+
+        rtrim(s, '0');
+        rtrim(s, '.');
+    }
+
+    [[nodiscard]] constexpr std::string trim_float_zeros_copy(const std::string& s)
+    {
+        std::string copy = s;
+        trim_float_zeros(copy);
+        return copy;
+    }
+
     //
     //  REPLACE FUNCTIONS
     //
