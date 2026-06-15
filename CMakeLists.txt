@@ -100,10 +100,6 @@ target_include_directories(nitro_api PRIVATE
         include
 )
 
-if (USE_PROFILER)
-    target_include_directories(nitro_api PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dep/optic/include)
-endif()
-
 target_link_libraries(nitro_api PRIVATE
         hl1_source_sdk::hl1_source_sdk
         OpenGL::GL
@@ -118,10 +114,6 @@ if (WIN32)
             psapi.lib
             ntdll.lib)
 endif ()
-
-if (USE_PROFILER)
-    target_link_libraries(nitro_api PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dep/optic/lib/OptickCore.lib)
-endif()
 
 if (MSVC)
     target_compile_options(nitro_api PRIVATE
@@ -175,7 +167,9 @@ if (WIN32)
 endif()
 
 if (USE_PROFILER)
-    target_compile_definitions(nitro_api PRIVATE -DUSE_OPTICK -DNITROAPI_USE_PROFILER)
+    find_package(optic REQUIRED)
+    target_link_libraries(nitro_api PRIVATE optic::optic)
+    target_compile_definitions(nitro_api PRIVATE USE_OPTICK NITROAPI_USE_PROFILER)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
