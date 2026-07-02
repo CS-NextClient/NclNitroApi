@@ -57,7 +57,12 @@ namespace nitroapi
         { StaticHookId::CHudHealth__DrawRadar,      SearchConfig("_ZN10CHudHealth9DrawRadarEf", SearchType::ExportFunc) }, 
         { StaticHookId::CHudHealth__GetAllPlayersInfo,SearchConfig("_ZN10CHudHealth17GetAllPlayersInfoEv", SearchType::ExportFunc) },
         { StaticHookId::CHudDeathNotice__Draw,      SearchConfig("_ZN15CHudDeathNotice4DrawEf", SearchType::ExportFunc) },
-        { StaticHookId::UserMsg_DeathMsg,           SearchConfig("_Z18__MsgFunc_DeathMsgPKciPv", SearchType::ExportFunc) }
+        { StaticHookId::UserMsg_DeathMsg,           SearchConfig("_Z18__MsgFunc_DeathMsgPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_BombDrop,           SearchConfig("_Z18__MsgFunc_BombDropPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_BombPickup,         SearchConfig("_Z20__MsgFunc_BombPickupPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_HostagePos,         SearchConfig("_Z20__MsgFunc_HostagePosPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_HostageK,           SearchConfig("_Z18__MsgFunc_HostageKPKciPv", SearchType::ExportFunc) },
+        { StaticHookId::UserMsg_ResetHUD,           SearchConfig("_Z18__MsgFunc_ResetHUDPKciPv", SearchType::ExportFunc) }
 
     };
 
@@ -65,6 +70,7 @@ namespace nitroapi
     {
         { "gHUD",                                   SearchConfig("gHUD", SearchType::ExportFunc) },
         { "g_iShotsFired",                          SearchConfig("g_iShotsFired", SearchType::ExportFunc) },
-        { "g_PlayerExtraInfo",                      SearchConfig("g_PlayerExtraInfo", SearchType::ExportFunc) }
+        { "g_PlayerExtraInfo",                      SearchConfig("g_PlayerExtraInfo", SearchType::ExportFunc) },
+        { "gEngfuncs",                              SearchConfig("gEngfuncs", SearchType::ExportFunc) }
     };
 }

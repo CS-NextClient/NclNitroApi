@@ -57,13 +57,19 @@ namespace nitroapi
         { StaticHookId::CHudHealth__DrawRadar,      SearchConfig(0x4CAF0) },
         { StaticHookId::CHudHealth__GetAllPlayersInfo,SearchConfig(0x4D470) },
         { StaticHookId::CHudDeathNotice__Draw,      SearchConfig(0x45640) },
-        { StaticHookId::UserMsg_DeathMsg,           SearchConfig(0x454D0) }
+        { StaticHookId::UserMsg_DeathMsg,           SearchConfig(0x454D0) },
+        { StaticHookId::UserMsg_BombDrop,           SearchConfig(0x4DFD0) },
+        { StaticHookId::UserMsg_BombPickup,         SearchConfig(0x4E000) },
+        { StaticHookId::UserMsg_HostagePos,         SearchConfig(0x4E090) },
+        { StaticHookId::UserMsg_HostageK,           SearchConfig(0x4E0C0) },
+        { StaticHookId::UserMsg_ResetHUD,           SearchConfig(0x4DF80) }
     };
 
     const std::unordered_map<std::string, SearchConfig> ClientAddressProvider8684Windows::addresses_str_
     {
         { "gHUD",                                   SearchConfig(0x121530) },
         { "g_iShotsFired",                          SearchConfig(0x1213A4) },
-        { "g_PlayerExtraInfo",                      SearchConfig(0x12F420) }
+        { "g_PlayerExtraInfo",                      SearchConfig(0x12F420) },
+        { "gEngfuncs",                              SearchConfig(0x125CC0) }
     };
 }

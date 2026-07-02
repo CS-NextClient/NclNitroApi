@@ -100,6 +100,7 @@ namespace nitroapi
         RegisterVar(&engine_data_->g_LastScreenUpdateTime, "g_LastScreenUpdateTime");
         RegisterVar(&engine_data_->maxTransObjs, "maxTransObjs");
         RegisterVar(&engine_data_->gLoadSky, "gLoadSky");
+        RegisterVar(&engine_data_->lightmap_textures, "lightmap_textures");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);
@@ -122,6 +123,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::CL_ReadPackets>(&engine_data_->CL_ReadPackets);
         RegisterFuncCdecl<StaticHookId::CL_MarkMapAsUsingHTTPDownload>(&engine_data_->CL_MarkMapAsUsingHTTPDownload);
         RegisterFuncCdecl<StaticHookId::CL_SetSolidEntities>(&engine_data_->CL_SetSolidEntities);
+        RegisterFuncCdecl<StaticHookId::CL_HookEvent>(&engine_data_->CL_HookEvent);
         RegisterFuncCdecl<StaticHookId::CL_ConnectionlessPacket>(&engine_data_->CL_ConnectionlessPacket);
         RegisterFuncCdecl<StaticHookId::CL_ProcessFile_0>(&engine_data_->CL_ProcessFile_0);
         RegisterFuncCdecl<StaticHookId::CL_RequestMissingResources>(&engine_data_->CL_RequestMissingResources);

@@ -265,6 +265,7 @@ namespace nitroapi
         Netchan_Transmit,
         Netchan_Clear,
         StopLoadingProgressBar,
+        CL_HookEvent,
 
         // client.dll
         UserMsg_MOTD = 1000,
@@ -322,6 +323,11 @@ namespace nitroapi
         UserMsg_InitHUD,
         UserMsg_DeathMsg,
         UserMsg_TextMsg,
+        UserMsg_BombDrop,
+        UserMsg_BombPickup,
+        UserMsg_HostagePos,
+        UserMsg_HostageK,
+        UserMsg_ResetHUD,
 
         // SDL2.dll
         SDL_DestroyWindow = 1500,

@@ -13,6 +13,7 @@ namespace nitroapi
 
         RegisterVar(&client_data_->g_iShotsFired, "g_iShotsFired");
         RegisterVar(&client_data_->g_PlayerExtraInfo, "g_PlayerExtraInfo");
+        RegisterVar(&client_data_->gEngfuncs, "gEngfuncs");
 
         RegisterFuncCdecl<StaticHookId::UserMsg_MOTD>(&client_data_->UserMsg_MOTD);
         RegisterFuncCdecl<StaticHookId::UserMsg_AmmoX>(&client_data_->UserMsg_AmmoX);
@@ -21,6 +22,11 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::UserMsg_InitHUD>(&client_data_->UserMsg_InitHUD);
         RegisterFuncCdecl<StaticHookId::UserMsg_DeathMsg>(&client_data_->UserMsg_DeathMsg);
         RegisterFuncCdecl<StaticHookId::UserMsg_TextMsg>(&client_data_->UserMsg_TextMsg);
+        RegisterFuncCdecl<StaticHookId::UserMsg_BombDrop>(&client_data_->UserMsg_BombDrop);
+        RegisterFuncCdecl<StaticHookId::UserMsg_BombPickup>(&client_data_->UserMsg_BombPickup);
+        RegisterFuncCdecl<StaticHookId::UserMsg_HostagePos>(&client_data_->UserMsg_HostagePos);
+        RegisterFuncCdecl<StaticHookId::UserMsg_HostageK>(&client_data_->UserMsg_HostageK);
+        RegisterFuncCdecl<StaticHookId::UserMsg_ResetHUD>(&client_data_->UserMsg_ResetHUD);
 
         RegisterFuncCdecl<StaticHookId::CLDLL_Initialize>(&client_data_->CLDLL_Initialize);
         RegisterFuncCdecl<StaticHookId::HUD_Init>(&client_data_->HUD_Init);

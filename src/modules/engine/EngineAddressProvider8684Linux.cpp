@@ -232,7 +232,8 @@ namespace nitroapi
         { StaticHookId::NET_LeaveGroup,             SearchConfig("NET_LeaveGroup", SearchType::ExportFunc) },
         { StaticHookId::Netchan_Transmit,           SearchConfig("Netchan_Transmit", SearchType::ExportFunc) },
         { StaticHookId::Netchan_Clear,              SearchConfig("Netchan_Clear", SearchType::ExportFunc) },
-        { StaticHookId::StopLoadingProgressBar,        SearchConfig("StopLoadingProgressBar", SearchType::ExportFunc) },
+        { StaticHookId::StopLoadingProgressBar,     SearchConfig("StopLoadingProgressBar", SearchType::ExportFunc) },
+        { StaticHookId::CL_HookEvent,               SearchConfig("CL_HookEvent", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_
@@ -318,5 +319,6 @@ namespace nitroapi
         { "g_LastScreenUpdateTime",                 SearchConfig("g_LastScreenUpdateTime", SearchType::ExportFunc) },
         { "maxTransObjs",                           SearchConfig("maxTransObjs", SearchType::ExportFunc) },
         { "gLoadSky",                               SearchConfig("gLoadSky", SearchType::ExportFunc) },
+        { "lightmap_textures",                      SearchConfig("lightmap_textures", SearchType::ExportFunc) },
     };
 }

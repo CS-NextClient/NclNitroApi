@@ -655,5 +655,10 @@ namespace nitroapi
         NitroFunctionVoid<netchan_t*>                   Netchan_Clear;
         // void StopLoadingProgressBar()
         NitroFunctionVoid<>                             StopLoadingProgressBar;
+        // void CL_HookEvent(char* name, void (*pfnEvent)(event_args_s*))
+        NitroFunctionVoid<char*, void(*)(struct event_args_s*)> CL_HookEvent;
+
+        // int lightmap_textures[MAX_LIGHTMAPS]
+        int (*lightmap_textures)[64]                    = nullptr;
     };
 }

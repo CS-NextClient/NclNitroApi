@@ -136,5 +136,18 @@ namespace nitroapi
         NitroFunctionVoid<const char*, int, void*>                 UserMsg_DeathMsg;
 
         extra_player_info_t* g_PlayerExtraInfo;
+
+        // int UserMsg_BombDrop(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                UserMsg_BombDrop;
+        // int UserMsg_BombPickup(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                UserMsg_BombPickup;
+        // int UserMsg_HostagePos(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                UserMsg_HostagePos;
+        // int UserMsg_HostageK(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                UserMsg_HostageK;
+        // int MsgFunc_ResetHUD(const char* name, int size, void* data)
+        NitroFunction<int, const char*, int, void*>                UserMsg_ResetHUD;
+
+        cl_enginefuncs_s* gEngfuncs                                = nullptr;
     };
 }

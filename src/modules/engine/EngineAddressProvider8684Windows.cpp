@@ -240,6 +240,7 @@ namespace nitroapi
         { StaticHookId::Netchan_Transmit,           SearchConfig(0x64Ec0) },
         { StaticHookId::Netchan_Clear,              SearchConfig(0x64C20) },
         { StaticHookId::StopLoadingProgressBar,     SearchConfig(0x7750) },
+        { StaticHookId::CL_HookEvent,               SearchConfig(0x1EEA0) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
@@ -326,5 +327,6 @@ namespace nitroapi
         { "g_LastScreenUpdateTime",                 SearchConfig(0x16CF24) },
         { "maxTransObjs",                           SearchConfig(0x6B7900) },
         { "gLoadSky",                               SearchConfig(0x64345C) },
+        { "lightmap_textures",                      SearchConfig(0x643200) },
     };
 }
