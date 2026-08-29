@@ -28,6 +28,7 @@ struct dma_t;
 struct sfxcache_t;
 struct channel_t;
 struct wavstream_t;
+struct sockaddr;
 
 namespace nitroapi
 {
@@ -209,8 +210,8 @@ namespace nitroapi
         // void MSG_WriteString(sizebuf_t *sb, const char *s)
         NitroFunctionVoid<sizebuf_t*, const char*>      MSG_WriteString;
 
-        // int NET_SendPacket(netsrc_t sock, int length, void *data, netadr_t to)
-        NitroFunction<int, netsrc_t, int, void*, netadr_t> NET_SendPacket;
+        // void NET_SendPacket(netsrc_t sock, int length, void *data, netadr_t to)
+        NitroFunctionVoid<netsrc_t, int, void*, netadr_t> NET_SendPacket;
         // qboolean NET_GetPacket(netsrc_t sock)
         NitroFunction<qboolean, netsrc_t>               NET_GetPacket;
         // qboolean NET_GetPacket_0()
@@ -660,5 +661,18 @@ namespace nitroapi
 
         // int lightmap_textures[MAX_LIGHTMAPS]
         int (*lightmap_textures)[64]                    = nullptr;
+
+        // each is int[3], indexed by netsrc_t
+        int* ip_sockets = nullptr;
+        int* ipx_sockets = nullptr;
+
+        // void NET_SendLoopPacket(netsrc_t sock, int length, void *data, netadr_t to)
+        NitroFunctionVoid<netsrc_t, int, void*, netadr_t> NET_SendLoopPacket;
+        // int NET_SendLong(netsrc_t sock, int s, const char *buf, int len, int flags, const sockaddr *to, int tolen)
+        NitroFunction<int, netsrc_t, int, const char*, int, int, const sockaddr*, int> NET_SendLong;
+        // void NET_AdrToSockadr(netadr_t *a, sockaddr *s)
+        NitroFunctionVoid<netadr_t*, sockaddr*>         NET_AdrToSockadr;
+        // char *NET_ErrorString(int code)
+        NitroFunction<char*, int>                       NET_ErrorString;
     };
 }

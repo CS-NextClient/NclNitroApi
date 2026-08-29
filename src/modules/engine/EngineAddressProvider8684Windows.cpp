@@ -241,6 +241,10 @@ namespace nitroapi
         { StaticHookId::Netchan_Clear,              SearchConfig(0x64C20) },
         { StaticHookId::StopLoadingProgressBar,     SearchConfig(0x7750) },
         { StaticHookId::CL_HookEvent,               SearchConfig(0x1EEA0) },
+        { StaticHookId::NET_SendLoopPacket,         SearchConfig(0x67950) },
+        { StaticHookId::NET_SendLong,               SearchConfig(0x686C0) },
+        { StaticHookId::NET_AdrToSockadr,           SearchConfig(0x66DB0) },
+        { StaticHookId::NET_ErrorString,            SearchConfig(0x675F0) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_
@@ -328,5 +332,7 @@ namespace nitroapi
         { "maxTransObjs",                           SearchConfig(0x6B7900) },
         { "gLoadSky",                               SearchConfig(0x64345C) },
         { "lightmap_textures",                      SearchConfig(0x643200) },
+        { "ip_sockets",                             SearchConfig(0x657F40) },
+        { "ipx_sockets",                            SearchConfig(0x657F4C) },
     };
 }

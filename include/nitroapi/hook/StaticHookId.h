@@ -266,6 +266,10 @@ namespace nitroapi
         Netchan_Clear,
         StopLoadingProgressBar,
         CL_HookEvent,
+        NET_SendLoopPacket,
+        NET_SendLong,
+        NET_AdrToSockadr,
+        NET_ErrorString,
 
         // client.dll
         UserMsg_MOTD = 1000,

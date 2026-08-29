@@ -101,6 +101,8 @@ namespace nitroapi
         RegisterVar(&engine_data_->maxTransObjs, "maxTransObjs");
         RegisterVar(&engine_data_->gLoadSky, "gLoadSky");
         RegisterVar(&engine_data_->lightmap_textures, "lightmap_textures");
+        RegisterVar(&engine_data_->ip_sockets, "ip_sockets");
+        RegisterVar(&engine_data_->ipx_sockets, "ipx_sockets");
 
         RegisterFuncCdecl<StaticHookId::Cbuf_AddText>(&engine_data_->Cbuf_AddText);
         RegisterFuncCdecl<StaticHookId::CL_QueueHTTPDownload>(&engine_data_->CL_QueueHTTPDownload);
@@ -337,6 +339,10 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::Netchan_Transmit>(&engine_data_->Netchan_Transmit);
         RegisterFuncCdecl<StaticHookId::Netchan_Clear>(&engine_data_->Netchan_Clear);
         RegisterFuncCdecl<StaticHookId::StopLoadingProgressBar>(&engine_data_->StopLoadingProgressBar);
+        RegisterFuncCdecl<StaticHookId::NET_SendLoopPacket>(&engine_data_->NET_SendLoopPacket);
+        RegisterFuncCdecl<StaticHookId::NET_SendLong>(&engine_data_->NET_SendLong);
+        RegisterFuncCdecl<StaticHookId::NET_AdrToSockadr>(&engine_data_->NET_AdrToSockadr);
+        RegisterFuncCdecl<StaticHookId::NET_ErrorString>(&engine_data_->NET_ErrorString);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});
