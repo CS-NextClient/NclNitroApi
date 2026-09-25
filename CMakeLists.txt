@@ -90,12 +90,10 @@ add_library(nitro_api SHARED
         src/modules/engine/EngineAddressProvider8684Linux.h
 )
 
-if (WIN32)
-        target_sources(nitro_api PRIVATE
-                src/modules/windows/WindowsModule.cpp
-                src/modules/windows/WindowsModule.h
-        )
-endif()
+target_sources(nitro_api PRIVATE
+        src/modules/windows/WindowsModule.cpp
+        src/modules/windows/WindowsModule.h
+)
 
 target_include_directories(nitro_api PRIVATE
         ${OPENGL_INCLUDE_DIR}
