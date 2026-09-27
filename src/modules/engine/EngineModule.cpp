@@ -343,6 +343,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::NET_SendLong>(&engine_data_->NET_SendLong);
         RegisterFuncCdecl<StaticHookId::NET_AdrToSockadr>(&engine_data_->NET_AdrToSockadr);
         RegisterFuncCdecl<StaticHookId::NET_ErrorString>(&engine_data_->NET_ErrorString);
+        RegisterFuncCdecl<StaticHookId::Sys_LoadModule>(&engine_data_->Sys_LoadModule);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});

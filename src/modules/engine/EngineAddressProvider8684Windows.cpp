@@ -245,6 +245,7 @@ namespace nitroapi
         { StaticHookId::NET_SendLong,               SearchConfig(0x686C0) },
         { StaticHookId::NET_AdrToSockadr,           SearchConfig(0x66DB0) },
         { StaticHookId::NET_ErrorString,            SearchConfig(0x675F0) },
+        { StaticHookId::Sys_LoadModule,             SearchConfig() },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Windows::addresses_str_

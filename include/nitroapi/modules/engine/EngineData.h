@@ -674,5 +674,7 @@ namespace nitroapi
         NitroFunctionVoid<netadr_t*, sockaddr*>         NET_AdrToSockadr;
         // char *NET_ErrorString(int code)
         NitroFunction<char*, int>                       NET_ErrorString;
+        // CSysModule *Sys_LoadModule(const char *pModuleName)
+        NitroFunction<void*, const char*>               Sys_LoadModule;
     };
 }

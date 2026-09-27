@@ -270,6 +270,7 @@ namespace nitroapi
         NET_SendLong,
         NET_AdrToSockadr,
         NET_ErrorString,
+        Sys_LoadModule,
 
         // client.dll
         UserMsg_MOTD = 1000,

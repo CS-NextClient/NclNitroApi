@@ -244,6 +244,7 @@ namespace nitroapi
         { StaticHookId::NET_SendLong,               SearchConfig("NET_SendLong", SearchType::ExportFunc) },
         { StaticHookId::NET_AdrToSockadr,           SearchConfig("NetadrToSockadr", SearchType::ExportFunc) },
         { StaticHookId::NET_ErrorString,            SearchConfig("NET_ErrorString", SearchType::ExportFunc) },
+        { StaticHookId::Sys_LoadModule,             SearchConfig("_Z14Sys_LoadModulePKc", SearchType::ExportFunc) },
     };
 
     const std::unordered_map<std::string, SearchConfig> EngineAddressProvider8684Linux::addresses_str_
