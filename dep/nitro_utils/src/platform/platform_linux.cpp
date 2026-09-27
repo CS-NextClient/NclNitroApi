@@ -10,7 +10,7 @@ namespace nitro_utils
     {
         void* handle;
 
-        handle = dlopen(name, RTLD_NOLOAD);
+        handle = dlopen(name, RTLD_NOW | RTLD_NOLOAD);
 
         if (handle == nullptr)
             return nullptr;
