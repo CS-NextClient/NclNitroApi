@@ -279,6 +279,10 @@ namespace nitroapi
         NitroFunction<model_t*, qboolean, const char*>  Mod_FindName;
         // model_t* Mod_LoadModel(model_t* mod, qboolean crash, qboolean trackCRC)
         NitroFunction<model_t*, model_t*, qboolean, qboolean> Mod_LoadModel;
+        // model_t* Mod_ForName(const char* name, qboolean crash, qboolean trackCRC)
+        NitroFunction<model_t*, const char*, qboolean, qboolean> Mod_ForName;
+        // void* Mod_Extradata(model_t* mod)
+        NitroFunction<void*, model_t*>                  Mod_Extradata;
         // void Mod_Print()
         NitroFunctionVoid<>                             Mod_Print;
         // qboolean Mod_ValidateCRC(const char* name, CRC32_t crc)
@@ -627,6 +631,9 @@ namespace nitroapi
         NitroFunction<qboolean, int>                    DT_SetRenderState;
         // void R_ForceCVars(qboolean mp)
         NitroFunctionVoid<qboolean>                     R_ForceCVars;
+        // void R_ForceCVars.part.1() - Linux only: the body GCC split out of R_ForceCVars,
+        // which R_Clear and R_SetupFrame call directly once they've checked for multiplayer
+        NitroFunctionVoid<>                             R_ForceCVars_part;
         // int GL_LoadTexture2(const char* identifier, int textureType, int width, int height, uint8_t* data, int mipmap, int iType, uint8_t* pPal, int filter)
         NitroFunction<int, const char*, int, int, int, uint8_t*, int, int, uint8_t*, int> GL_LoadTexture2;
         // void DT_LoadDetailTexture(const char *diffuseName, int diffuseId)

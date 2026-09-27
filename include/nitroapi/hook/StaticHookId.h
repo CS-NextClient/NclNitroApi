@@ -271,6 +271,9 @@ namespace nitroapi
         NET_AdrToSockadr,
         NET_ErrorString,
         Sys_LoadModule,
+        Mod_ForName,
+        Mod_Extradata,
+        R_ForceCVars_part,
 
         // client.dll
         UserMsg_MOTD = 1000,

@@ -176,6 +176,8 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::Mod_ClearAll>(&engine_data_->Mod_ClearAll);
         RegisterFuncCdecl<StaticHookId::Mod_FindName>(&engine_data_->Mod_FindName);
         RegisterFuncCdecl<StaticHookId::Mod_LoadModel>(&engine_data_->Mod_LoadModel);
+        RegisterFuncCdecl<StaticHookId::Mod_ForName>(&engine_data_->Mod_ForName);
+        RegisterFuncCdecl<StaticHookId::Mod_Extradata>(&engine_data_->Mod_Extradata);
         RegisterFuncCdecl<StaticHookId::Mod_Print>(&engine_data_->Mod_Print);
         RegisterFuncCdecl<StaticHookId::Mod_ValidateCRC>(&engine_data_->Mod_ValidateCRC);
         RegisterFuncCdecl<StaticHookId::Mod_NeedCRC>(&engine_data_->Mod_NeedCRC);
@@ -328,6 +330,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::VGUI2_Draw_SetTextColor>(&engine_data_->VGUI2_Draw_SetTextColor);
         RegisterFuncCdecl<StaticHookId::DT_SetRenderState>(&engine_data_->DT_SetRenderState);
         RegisterFuncCdecl<StaticHookId::R_ForceCVars>(&engine_data_->R_ForceCVars);
+        RegisterFuncCdecl<StaticHookId::R_ForceCVars_part>(&engine_data_->R_ForceCVars_part);
         RegisterFuncCdecl<StaticHookId::GL_LoadTexture2>(&engine_data_->GL_LoadTexture2);
         RegisterFuncCdecl<StaticHookId::DT_LoadDetailTexture>(&engine_data_->DT_LoadDetailTexture);
         RegisterFuncCdecl<StaticHookId::CL_ClearState>(&engine_data_->CL_ClearState);
