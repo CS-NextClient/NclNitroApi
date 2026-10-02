@@ -274,6 +274,7 @@ namespace nitroapi
         Mod_ForName,
         Mod_Extradata,
         R_ForceCVars_part,
+        Cbuf_AddFilteredText,
 
         // client.dll
         UserMsg_MOTD = 1000,

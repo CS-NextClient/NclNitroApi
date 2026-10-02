@@ -331,6 +331,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::DT_SetRenderState>(&engine_data_->DT_SetRenderState);
         RegisterFuncCdecl<StaticHookId::R_ForceCVars>(&engine_data_->R_ForceCVars);
         RegisterFuncCdecl<StaticHookId::R_ForceCVars_part>(&engine_data_->R_ForceCVars_part);
+        RegisterFuncCdecl<StaticHookId::Cbuf_AddFilteredText>(&engine_data_->Cbuf_AddFilteredText);
         RegisterFuncCdecl<StaticHookId::GL_LoadTexture2>(&engine_data_->GL_LoadTexture2);
         RegisterFuncCdecl<StaticHookId::DT_LoadDetailTexture>(&engine_data_->DT_LoadDetailTexture);
         RegisterFuncCdecl<StaticHookId::CL_ClearState>(&engine_data_->CL_ClearState);

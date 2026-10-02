@@ -231,6 +231,7 @@ namespace nitroapi
         { StaticHookId::DT_SetRenderState,          SearchConfig("DT_SetRenderState", SearchType::ExportFunc) },
         { StaticHookId::R_ForceCVars,               SearchConfig("R_ForceCVars", SearchType::ExportFunc) },
         { StaticHookId::R_ForceCVars_part,          SearchConfig("R_ForceCVars.part.1", SearchType::Symbol) },
+        { StaticHookId::Cbuf_AddFilteredText,       SearchConfig("Cbuf_AddFilteredText", SearchType::ExportFunc) },
         { StaticHookId::GL_LoadTexture2,            SearchConfig("GL_LoadTexture2", SearchType::ExportFunc) },
         { StaticHookId::DT_LoadDetailTexture,       SearchConfig("DT_LoadDetailTexture", SearchType::ExportFunc) },
         { StaticHookId::CL_ClearState,              SearchConfig("CL_ClearState", SearchType::ExportFunc) },

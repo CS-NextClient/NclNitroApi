@@ -634,6 +634,9 @@ namespace nitroapi
         // void R_ForceCVars.part.1() - Linux only: the body GCC split out of R_ForceCVars,
         // which R_Clear and R_SetupFrame call directly once they've checked for multiplayer
         NitroFunctionVoid<>                             R_ForceCVars_part;
+        // void Cbuf_AddFilteredText(const char *text): where the Linux hw.so puts stufftext,
+        // past Cbuf_AddText; in hw.dll both go through the Cbuf_AddText that takes the buffer
+        NitroFunctionVoid<const char*>                  Cbuf_AddFilteredText;
         // int GL_LoadTexture2(const char* identifier, int textureType, int width, int height, uint8_t* data, int mipmap, int iType, uint8_t* pPal, int filter)
         NitroFunction<int, const char*, int, int, int, uint8_t*, int, int, uint8_t*, int> GL_LoadTexture2;
         // void DT_LoadDetailTexture(const char *diffuseName, int diffuseId)
