@@ -176,6 +176,8 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::Mod_ClearAll>(&engine_data_->Mod_ClearAll);
         RegisterFuncCdecl<StaticHookId::Mod_FindName>(&engine_data_->Mod_FindName);
         RegisterFuncCdecl<StaticHookId::Mod_LoadModel>(&engine_data_->Mod_LoadModel);
+        RegisterFuncCdecl<StaticHookId::Mod_ForName>(&engine_data_->Mod_ForName);
+        RegisterFuncCdecl<StaticHookId::Mod_Extradata>(&engine_data_->Mod_Extradata);
         RegisterFuncCdecl<StaticHookId::Mod_Print>(&engine_data_->Mod_Print);
         RegisterFuncCdecl<StaticHookId::Mod_ValidateCRC>(&engine_data_->Mod_ValidateCRC);
         RegisterFuncCdecl<StaticHookId::Mod_NeedCRC>(&engine_data_->Mod_NeedCRC);
@@ -328,6 +330,8 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::VGUI2_Draw_SetTextColor>(&engine_data_->VGUI2_Draw_SetTextColor);
         RegisterFuncCdecl<StaticHookId::DT_SetRenderState>(&engine_data_->DT_SetRenderState);
         RegisterFuncCdecl<StaticHookId::R_ForceCVars>(&engine_data_->R_ForceCVars);
+        RegisterFuncCdecl<StaticHookId::R_ForceCVars_part>(&engine_data_->R_ForceCVars_part);
+        RegisterFuncCdecl<StaticHookId::Cbuf_AddFilteredText>(&engine_data_->Cbuf_AddFilteredText);
         RegisterFuncCdecl<StaticHookId::GL_LoadTexture2>(&engine_data_->GL_LoadTexture2);
         RegisterFuncCdecl<StaticHookId::DT_LoadDetailTexture>(&engine_data_->DT_LoadDetailTexture);
         RegisterFuncCdecl<StaticHookId::CL_ClearState>(&engine_data_->CL_ClearState);
@@ -343,6 +347,7 @@ namespace nitroapi
         RegisterFuncCdecl<StaticHookId::NET_SendLong>(&engine_data_->NET_SendLong);
         RegisterFuncCdecl<StaticHookId::NET_AdrToSockadr>(&engine_data_->NET_AdrToSockadr);
         RegisterFuncCdecl<StaticHookId::NET_ErrorString>(&engine_data_->NET_ErrorString);
+        RegisterFuncCdecl<StaticHookId::Sys_LoadModule>(&engine_data_->Sys_LoadModule);
 
         RegisterFuncCdecl<StaticHookId::SVC_Nop>(&engine_data_->SVC_Nop, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_nop")->pfn;});
         RegisterFuncCdecl<StaticHookId::SVC_Disconnect>(&engine_data_->SVC_Disconnect, [this](nitro_utils::SysModule hModule){return (uint32_t)FindEngineMsgByName(engine_data_->EngineMsgBase, "svc_disconnect")->pfn;});

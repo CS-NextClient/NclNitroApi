@@ -51,8 +51,6 @@ add_library(nitro_api SHARED
         src/NitroApi.cpp
         src/NitroApi.h
         src/HookStorage.h
-        src/modules/windows/WindowsModule.cpp
-        src/modules/windows/WindowsModule.h
         src/ChainExtensions.cpp
         src/LibraryHookListener.h
         include/nitroapi/NitroFunction.h
@@ -90,6 +88,11 @@ add_library(nitro_api SHARED
         src/modules/client/ClientAddressProvider8684Linux.h
         src/modules/engine/EngineAddressProvider8684Linux.cpp
         src/modules/engine/EngineAddressProvider8684Linux.h
+)
+
+target_sources(nitro_api PRIVATE
+        src/modules/windows/WindowsModule.cpp
+        src/modules/windows/WindowsModule.h
 )
 
 target_include_directories(nitro_api PRIVATE

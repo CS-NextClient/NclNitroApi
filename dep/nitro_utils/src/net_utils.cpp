@@ -2,10 +2,10 @@
 #include <charconv>
 #include <format>
 #include <string_view>
-#include <ws2tcpip.h>
 
 #ifdef _WIN32
 #include <Winsock2.h>
+#include <ws2tcpip.h>
 #else
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -50,7 +50,7 @@ namespace nitro_utils
             uPort = ParsePort(std::string_view(ip).substr(colonPos + 1));
         }
 
-        if (inet_pton(AF_INET, host.c_str(), &uHost) != TRUE)
+        if (inet_pton(AF_INET, host.c_str(), &uHost) != 1)
         {
             uHost = INADDR_NONE;
         }

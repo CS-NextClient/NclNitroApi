@@ -308,6 +308,7 @@ namespace nitro_utils
 
 #ifdef _WIN32
     [[nodiscard]] std::string ConvertCurrentCodepageToUtf8(const std::string_view& str);
+#endif
 
     // Empty for text that does not convert
     [[nodiscard]] std::wstring utf8_to_wide(std::string_view str);
@@ -316,7 +317,6 @@ namespace nitro_utils
     // Lowers the letters of every script; to_lower(std::string&) lowers the ASCII ones
     void to_lower(std::wstring& str);
     [[nodiscard]] std::wstring to_lower_copy(std::wstring_view str);
-#endif
 
     //
     // VARIOUS FUNCTIONS
